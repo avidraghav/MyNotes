@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/allTasksFragment">
+
+    <fragment
+        android:id="@+id/allTasksFragment"
+        android:name="com.raghav.mvvmtodo.AllTasksFragment"
+        android:label="AllTasksFragment" >
+        <action
+            android:id="@+id/action_allTasksFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.raghav.mvvmtodo.AddTaskFragment"
+        android:label="AddTaskFragment" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_allTasksFragment"
+            app:destination="@id/allTasksFragment" />
+    </fragment>
+</navigation>
