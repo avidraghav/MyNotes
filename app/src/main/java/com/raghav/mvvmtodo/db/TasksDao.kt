@@ -2,6 +2,7 @@ package com.raghav.mvvmtodo.db
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.raghav.mvvmtodo.models.TaskEntity
 import kotlinx.coroutines.flow.Flow
@@ -9,9 +10,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TasksDao {
 
-    @Insert()
+    @Insert(onConflict = REPLACE)
     suspend fun saveTask(task: TaskEntity)
 
     @Query("SELECT * from tasks")
-    suspend fun getTasks(): Flow<TaskEntity>
+    fun getTasks(): Flow<List<TaskEntity>>
 }
