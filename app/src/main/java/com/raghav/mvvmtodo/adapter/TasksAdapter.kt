@@ -21,7 +21,7 @@ class TasksAdapter(private val tasks: List<TaskEntity>) :
 
     override fun getItemCount() = tasks.size
 
-    inner class TasksViewHolder(val binding: ItemTaskBinding) :
+    inner class TasksViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TaskEntity) {
             binding.tvTitle.text = item.title

@@ -1,4 +1,4 @@
-package com.raghav.mvvmtodo
+package com.raghav.mvvmtodo.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -25,6 +25,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="ContentDescription" />
 
+    <TextView
+        android:id="@+id/tv_no_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Tasks Currently"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        tools:visibility="visible" />
+
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"

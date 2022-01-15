@@ -1,15 +1,20 @@
-package com.raghav.mvvmtodo
+package com.raghav.mvvmtodo.ui
 
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.raghav.mvvmtodo.MvvmTodo
+import com.raghav.mvvmtodo.R
 import com.raghav.mvvmtodo.adapter.TasksAdapter
 import com.raghav.mvvmtodo.databinding.FragmentAllTasksBinding
 import com.raghav.mvvmtodo.utils.Resource
+import com.raghav.mvvmtodo.viewmodelfactories.AllTasksViewModelFactory
 
 class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
     lateinit var binding: FragmentAllTasksBinding
@@ -34,7 +39,10 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                 is Resource.Loading -> showProgressBar()
                 is Resource.Success -> {
                     hideProgressBar()
-                    binding.rvTasks.adapter = data.data?.let { TasksAdapter(it) }
+                    if (data.data?.isEmpty() == true)
+                        binding.tvNoTasks.visibility = VISIBLE
+                    else
+                        binding.rvTasks.adapter = data.data?.let { TasksAdapter(it.reversed()) }
                 }
                 is Resource.Error -> {
                     hideProgressBar()
@@ -51,10 +59,10 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
     }
 
     private fun hideProgressBar() {
-        binding.progressbar.visibility = View.GONE
+        binding.progressbar.visibility = GONE
     }
 
     private fun showProgressBar() {
-        binding.progressbar.visibility = View.VISIBLE
+        binding.progressbar.visibility = VISIBLE
     }
 }

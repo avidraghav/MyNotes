@@ -1,4 +1,4 @@
-package com.raghav.mvvmtodo
+package com.raghav.mvvmtodo.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
