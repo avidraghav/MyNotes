@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/allTasksFragment"
         android:name="com.raghav.mvvmtodo.ui.AllTasksFragment"
-        android:label="AllTasksFragment" >
+        android:label="AllTasksFragment">
         <action
             android:id="@+id/action_allTasksFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
@@ -15,9 +15,11 @@
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="com.raghav.mvvmtodo.ui.AddTaskFragment"
-        android:label="AddTaskFragment" >
+        android:label="AddTaskFragment">
         <action
             android:id="@+id/action_addTaskFragment_to_allTasksFragment"
-            app:destination="@id/allTasksFragment" />
+            app:destination="@id/allTasksFragment"
+            app:popUpTo="@id/allTasksFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
