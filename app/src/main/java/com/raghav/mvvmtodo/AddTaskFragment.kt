@@ -16,7 +16,7 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
     private lateinit var binding: FragmentAddTaskBinding
 
     private val viewModel by viewModels<AddTasksVM> {
-        TasksViewModelFactory((activity?.application as MvvmTodo).repository)
+        AddTaskViewModelFactory((activity?.application as MvvmTodo).repository)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,10 +44,10 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
     }
 
     private fun hideProgressBar() {
-        binding.progressbar.visibility = VISIBLE
+        binding.progressbar.visibility = GONE
     }
 
     private fun showProgressBar() {
-        binding.progressbar.visibility = GONE
+        binding.progressbar.visibility = VISIBLE
     }
 }
