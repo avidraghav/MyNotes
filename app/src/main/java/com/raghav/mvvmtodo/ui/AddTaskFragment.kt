@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.raghav.mvvmtodo.MvvmTodo
 import com.raghav.mvvmtodo.R
 import com.raghav.mvvmtodo.databinding.FragmentAddTaskBinding
@@ -17,6 +18,8 @@ import com.raghav.mvvmtodo.viewmodelfactories.AddTaskViewModelFactory
 
 class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
     private lateinit var binding: FragmentAddTaskBinding
+    private val args: AddTaskFragmentArgs by navArgs()
+    private var key: Int? = null
 
     private val viewModel by viewModels<AddTasksVM> {
         AddTaskViewModelFactory((activity?.application as MvvmTodo).repository)
@@ -26,13 +29,21 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddTaskBinding.bind(view)
 
+        if (args.task != null) {
+            val task = args.task
+            binding.etTaskTitle.setText(task?.title)
+            binding.description.setText(task?.description)
+            key = task?.id
+        }
+
+
         binding.btnSaveTask.setOnClickListener {
             val title = binding.etTaskTitle.text.toString()
             val description = binding.description.text.toString()
-            val aTask = TaskEntity(title, description)
+            val aTask = TaskEntity(title, description, key)
             saveTask(aTask)
-
         }
+
     }
 
     private fun saveTask(aTask: TaskEntity) {

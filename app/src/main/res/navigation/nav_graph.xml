@@ -21,5 +21,10 @@
             app:destination="@id/allTasksFragment"
             app:popUpTo="@id/allTasksFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="task"
+            app:argType="com.raghav.mvvmtodo.models.TaskEntity"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>

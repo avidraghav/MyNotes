@@ -9,5 +9,5 @@ data class TaskEntity(
     val title: String,
     val description: String,
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Int? = 0,
 ) : Serializable

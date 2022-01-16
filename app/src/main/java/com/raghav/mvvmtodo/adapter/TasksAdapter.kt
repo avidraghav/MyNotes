@@ -2,9 +2,11 @@ package com.raghav.mvvmtodo.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.raghav.mvvmtodo.databinding.ItemTaskBinding
 import com.raghav.mvvmtodo.models.TaskEntity
+import com.raghav.mvvmtodo.ui.AllTasksFragmentDirections
 
 class TasksAdapter(private val tasks: List<TaskEntity>) :
     RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
@@ -26,6 +28,13 @@ class TasksAdapter(private val tasks: List<TaskEntity>) :
         fun bind(item: TaskEntity) {
             binding.tvTitle.text = item.title
             binding.tvDescription.text = item.description
+
+            binding.root.setOnClickListener {
+                val action =
+                    AllTasksFragmentDirections.actionAllTasksFragmentToAddTaskFragment(item)
+                it.findNavController().navigate(action)
+
+            }
         }
     }
 
