@@ -34,15 +34,26 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
             findNavController().navigate(R.id.action_allTasksFragment_to_addTaskFragment)
         }
 
+
         viewModel.tasks.observe(viewLifecycleOwner, { data ->
             when (data) {
                 is Resource.Loading -> showProgressBar()
                 is Resource.Success -> {
                     hideProgressBar()
-                    if (data.data?.isEmpty() == true)
+                    if (data.data?.isEmpty() == true) {
                         binding.tvNoTasks.visibility = VISIBLE
-                    else
-                        binding.rvTasks.adapter = data.data?.let { TasksAdapter(it.reversed()) }
+                        binding.rvTasks.adapter = TasksAdapter(emptyList())
+                    } else {
+                        binding.rvTasks.adapter = data.data?.let {
+                            TasksAdapter(it.reversed()) { binding, item ->
+                                binding.ivDelete.setOnClickListener {
+                                    viewModel.deleteTask(item)
+                                    Toast.makeText(activity, "Task Deleted", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            }
+                        }
+                    }
                 }
                 is Resource.Error -> {
                     hideProgressBar()

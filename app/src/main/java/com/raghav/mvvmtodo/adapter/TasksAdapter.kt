@@ -8,7 +8,10 @@ import com.raghav.mvvmtodo.databinding.ItemTaskBinding
 import com.raghav.mvvmtodo.models.TaskEntity
 import com.raghav.mvvmtodo.ui.AllTasksFragmentDirections
 
-class TasksAdapter(private val tasks: List<TaskEntity>) :
+class TasksAdapter(
+    private val tasks: List<TaskEntity>,
+    private val onItemClickListener: (ItemTaskBinding, TaskEntity) -> Unit = { _: ItemTaskBinding, _: TaskEntity -> }
+) :
     RecyclerView.Adapter<TasksAdapter.TasksViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TasksViewHolder {
@@ -33,8 +36,8 @@ class TasksAdapter(private val tasks: List<TaskEntity>) :
                 val action =
                     AllTasksFragmentDirections.actionAllTasksFragmentToAddTaskFragment(item)
                 it.findNavController().navigate(action)
-
             }
+            onItemClickListener(binding, item)
         }
     }
 

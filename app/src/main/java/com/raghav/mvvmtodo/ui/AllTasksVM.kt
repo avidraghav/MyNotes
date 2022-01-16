@@ -27,4 +27,10 @@ class AllTasksVM(private val repository: TasksRepository) : ViewModel() {
             }
         }
     }
+
+    fun deleteTask(task: TaskEntity) {
+        viewModelScope.launch {
+            repository.deleteTask(task)
+        }
+    }
 }
