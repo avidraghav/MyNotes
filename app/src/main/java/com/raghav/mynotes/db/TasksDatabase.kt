@@ -1,10 +1,10 @@
-package com.raghav.mvvmtodo.db
+package com.raghav.mynotes.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.raghav.mvvmtodo.models.TaskEntity
+import com.raghav.mynotes.models.TaskEntity
 
 @Database(entities = [TaskEntity::class], version = 1)
 abstract class TasksDatabase : RoomDatabase() {

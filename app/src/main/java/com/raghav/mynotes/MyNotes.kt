@@ -1,10 +1,10 @@
-package com.raghav.mvvmtodo
+package com.raghav.mynotes
 
 import android.app.Application
-import com.raghav.mvvmtodo.db.TasksDatabase
-import com.raghav.mvvmtodo.repository.TasksRepository
+import com.raghav.mynotes.db.TasksDatabase
+import com.raghav.mynotes.repository.TasksRepository
 
-class MvvmTodo : Application() {
+class MyNotes : Application() {
 
     val database by lazy { TasksDatabase.getDatabase(this) }
     val repository by lazy { TasksRepository(database.dao()) }

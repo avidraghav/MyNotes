@@ -1,4 +1,4 @@
-package com.raghav.mvvmtodo.utils
+package com.raghav.mynotes.utils
 
 sealed class Resource<T>(val data: T? = null, val message: String? = null) {
 

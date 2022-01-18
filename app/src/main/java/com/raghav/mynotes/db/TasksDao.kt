@@ -1,11 +1,11 @@
-package com.raghav.mvvmtodo.db
+package com.raghav.mynotes.db
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.raghav.mvvmtodo.models.TaskEntity
+import com.raghav.mynotes.models.TaskEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
