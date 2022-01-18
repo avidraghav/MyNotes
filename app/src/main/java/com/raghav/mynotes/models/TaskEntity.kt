@@ -1,4 +1,4 @@
-package com.raghav.mvvmtodo.models
+package com.raghav.mynotes.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

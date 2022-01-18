@@ -1,9 +1,9 @@
-package com.raghav.mvvmtodo.viewmodelfactories
+package com.raghav.mynotes.viewmodelfactories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.raghav.mvvmtodo.repository.TasksRepository
-import com.raghav.mvvmtodo.ui.AddTasksVM
+import com.raghav.mynotes.repository.TasksRepository
+import com.raghav.mynotes.ui.AddTasksVM
 
 class AddTaskViewModelFactory(private val repository: TasksRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

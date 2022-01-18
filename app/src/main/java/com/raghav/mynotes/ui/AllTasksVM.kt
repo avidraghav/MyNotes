@@ -1,12 +1,12 @@
-package com.raghav.mvvmtodo.ui
+package com.raghav.mynotes.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.raghav.mvvmtodo.models.TaskEntity
-import com.raghav.mvvmtodo.repository.TasksRepository
-import com.raghav.mvvmtodo.utils.Resource
+import com.raghav.mynotes.models.TaskEntity
+import com.raghav.mynotes.repository.TasksRepository
+import com.raghav.mynotes.utils.Resource
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

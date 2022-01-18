@@ -1,7 +1,7 @@
-package com.raghav.mvvmtodo.repository
+package com.raghav.mynotes.repository
 
-import com.raghav.mvvmtodo.db.TasksDao
-import com.raghav.mvvmtodo.models.TaskEntity
+import com.raghav.mynotes.db.TasksDao
+import com.raghav.mynotes.models.TaskEntity
 
 
 class TasksRepository(private val dao: TasksDao) {

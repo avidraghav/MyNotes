@@ -1,9 +1,9 @@
-package com.raghav.mvvmtodo.viewmodelfactories
+package com.raghav.mynotes.viewmodelfactories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.raghav.mvvmtodo.repository.TasksRepository
-import com.raghav.mvvmtodo.ui.AllTasksVM
+import com.raghav.mynotes.repository.TasksRepository
+import com.raghav.mynotes.ui.AllTasksVM
 
 class AllTasksViewModelFactory(private val repository: TasksRepository) :
     ViewModelProvider.Factory {

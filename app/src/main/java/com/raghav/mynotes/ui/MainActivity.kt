@@ -1,8 +1,8 @@
-package com.raghav.mvvmtodo.ui
+package com.raghav.mynotes.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.raghav.mvvmtodo.R
+import com.raghav.mynotes.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
