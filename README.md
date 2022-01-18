@@ -19,6 +19,11 @@ Manual Dependency injection method and then move to Dagger and Hilt.
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - To Store UI-related data that isnt destroyed on UI changes.
 - [RecylerView](https://developer.android.com/guide/topics/ui/layout/recyclerview) - To Display data in a list format.
 
+# 🏗️ Architecture Design
+
+
+<img width="658" alt="Screenshot 2022-01-18 at 1 31 48 PM" src="https://user-images.githubusercontent.com/49483235/149895306-79dd64bb-7629-42f3-97dd-1796f4a65b40.png">
+
 # This project is made for educational purposes so don't be shy of asking any questions about any concept from the app or about android developement. 
 Do open <a href ="https://github.com/avidraghav/MVVM-TodoApp/issues" target="_blank">issues</a>
   and raise PRs to I'll try my best to assist you. :smiley:
