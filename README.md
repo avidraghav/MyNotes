@@ -1,5 +1,5 @@
-# :pencil: MVVM-TodoApp
-A demo todo/notes app which demonstrates the use of MVVM architecture, Navigation Component Library, Room Database, LiveData, Coroutines etc.
+# :pencil: MyNotes
+A demo notes/todo app which demonstrates the use of MVVM architecture, Navigation Component Library, Room Database, LiveData, Coroutines etc.
 
 # :movie_camera: Working Demo
 <img src="https://user-images.githubusercontent.com/49483235/149808793-bb684b3f-b802-48e5-b728-536f8c4cecef.gif" width="600" height="700">
