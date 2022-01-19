@@ -21,9 +21,9 @@ class AllTasksVM(private val repository: TasksRepository) : ViewModel() {
 
     private fun getTasks() {
         viewModelScope.launch {
+            _tasks.postValue(Resource.Loading())
             repository.getAllTasks().collect {
-                _tasks.value = Resource.Loading()
-                _tasks.value = Resource.Success(it)
+                _tasks.postValue(Resource.Success(it))
             }
         }
     }
