@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-android'
     id "androidx.navigation.safeargs.kotlin"
     id 'kotlin-kapt'
+    // hilt plugin
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -65,7 +67,12 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
 
-    //Dagger-Hilt
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    //Dagger-Hilt Dependencies
+    implementation 'com.google.dagger:hilt-android:2.38.1'
+    kapt 'com.google.dagger:hilt-android-compiler:2.38.1'
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
