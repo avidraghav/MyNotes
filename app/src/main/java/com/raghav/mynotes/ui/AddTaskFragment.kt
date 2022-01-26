@@ -1,6 +1,7 @@
 package com.raghav.mynotes.ui
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -38,25 +39,23 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
 
 
         binding.btnSaveTask.setOnClickListener {
-             val title = binding.etTaskTitle.text.toString()
+            val title = binding.etTaskTitle.text.toString()
             val description = binding.description.text.toString()
 
-            when{
-                TextUtils.isEmpty(title)->{
-                    Toast.makeText(context,"Pls Enter A title",Toast.LENGTH_SHORT).show()
-
+            when {
+                TextUtils.isEmpty(title) -> {
+                    Toast.makeText(context, "Please Enter A title", Toast.LENGTH_SHORT).show()
                 }
-                TextUtils.isEmpty(description)->{
-                    Toast.makeText(context,"Pls Enter Task Description",Toast.LENGTH_SHORT).show()
-
+                TextUtils.isEmpty(description) -> {
+                    Toast.makeText(context, "Please Enter Task Description", Toast.LENGTH_SHORT)
+                        .show()
                 }
-                else->{
+                else -> {
                     val aTask = TaskEntity(title, description, key)
                     saveTask(aTask)
                 }
             }
         }
-
     }
 
     private fun saveTask(aTask: TaskEntity) {
