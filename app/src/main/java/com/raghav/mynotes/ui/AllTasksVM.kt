@@ -7,10 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.raghav.mynotes.models.TaskEntity
 import com.raghav.mynotes.repository.TasksRepository
 import com.raghav.mynotes.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AllTasksVM(private val repository: TasksRepository) : ViewModel() {
+@HiltViewModel
+class AllTasksVM @Inject constructor(private val repository: TasksRepository) : ViewModel() {
 
     private val _tasks = MutableLiveData<Resource<List<TaskEntity>>>()
     val tasks: LiveData<Resource<List<TaskEntity>>> = _tasks

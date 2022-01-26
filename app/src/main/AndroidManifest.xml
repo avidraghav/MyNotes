@@ -3,7 +3,7 @@
     package="com.raghav.mynotes">
 
     <application
-        android:name="com.raghav.mynotes.MyNotes"
+        android:name="com.raghav.mynotes.utils.MyNotesApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

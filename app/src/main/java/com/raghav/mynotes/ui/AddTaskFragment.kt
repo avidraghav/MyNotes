@@ -11,20 +11,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.raghav.mynotes.MyNotes
 import com.raghav.mynotes.R
 import com.raghav.mynotes.databinding.FragmentAddTaskBinding
 import com.raghav.mynotes.models.TaskEntity
-import com.raghav.mynotes.viewmodelfactories.AddTaskViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
     private lateinit var binding: FragmentAddTaskBinding
     private val args: AddTaskFragmentArgs by navArgs()
     private var key: Int? = null
 
-    private val viewModel by viewModels<AddTasksVM> {
-        AddTaskViewModelFactory((activity?.application as MyNotes).repository)
-    }
+    private val viewModel by viewModels<AddTasksVM>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
