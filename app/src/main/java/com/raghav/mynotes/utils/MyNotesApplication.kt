@@ -1,9 +1,11 @@
 package com.raghav.mynotes.utils
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.raghav.mynotes.db.TasksDatabase
+import com.raghav.mynotes.repository.TasksRepository
 
-@HiltAndroidApp
 class MyNotesApplication : Application() {
 
+    val database by lazy { TasksDatabase.getDatabase(this) }
+    val repository by lazy { TasksRepository(database.dao()) }
 }

@@ -12,14 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.raghav.mynotes.R
 import com.raghav.mynotes.adapter.TasksAdapter
 import com.raghav.mynotes.databinding.FragmentAllTasksBinding
+import com.raghav.mynotes.utils.MyNotesApplication
 import com.raghav.mynotes.utils.Resource
-import dagger.hilt.android.AndroidEntryPoint
+import com.raghav.mynotes.viewmodelfactories.AllTasksViewModelFactory
 
-@AndroidEntryPoint
 class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
     lateinit var binding: FragmentAllTasksBinding
 
-    private val viewModel by viewModels<AllTasksVM>()
+    private val viewModel by viewModels<AllTasksVM> {
+        AllTasksViewModelFactory((activity?.application as MyNotesApplication).repository)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
