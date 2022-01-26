@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.raghav.mynotes.MyNotes
 import com.raghav.mynotes.R
 import com.raghav.mynotes.adapter.TasksAdapter
 import com.raghav.mynotes.databinding.FragmentAllTasksBinding
+import com.raghav.mynotes.utils.MyNotesApplication
 import com.raghav.mynotes.utils.Resource
 import com.raghav.mynotes.viewmodelfactories.AllTasksViewModelFactory
 
@@ -20,7 +20,7 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
     lateinit var binding: FragmentAllTasksBinding
 
     private val viewModel by viewModels<AllTasksVM> {
-        AllTasksViewModelFactory((activity?.application as MyNotes).repository)
+        AllTasksViewModelFactory((activity?.application as MyNotesApplication).repository)
     }
 
 
