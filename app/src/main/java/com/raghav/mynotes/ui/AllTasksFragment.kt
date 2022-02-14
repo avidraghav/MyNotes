@@ -13,6 +13,7 @@ import com.raghav.mynotes.R
 import com.raghav.mynotes.adapter.TasksAdapter
 import com.raghav.mynotes.databinding.FragmentAllTasksBinding
 import com.raghav.mynotes.utils.Resource
+import com.raghav.mynotes.utils.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,8 +46,7 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                             TasksAdapter(it.reversed()) { binding, item ->
                                 binding.ivDelete.setOnClickListener {
                                     viewModel.deleteTask(item)
-                                    Toast.makeText(activity, "Task Deleted", Toast.LENGTH_SHORT)
-                                        .show()
+                                    ToastUtils.showToast(requireContext(), "Task Deleted")
                                 }
                             }
                         }
@@ -58,7 +58,6 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                 }
             }
         })
-
     }
 
     private fun setUpRecyclerView() {
