@@ -42,5 +42,6 @@
         android:layout_marginEnd="12dp"
         app:layout_constraintStart_toEndOf="@id/tv_title"
         tools:layout_editor_absoluteY="8dp"
+        android:background="?attr/selectableItemBackground"
         tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>

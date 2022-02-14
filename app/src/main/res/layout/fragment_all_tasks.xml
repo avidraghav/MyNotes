@@ -40,7 +40,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"
         android:layout_margin="10dp"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        tools:ignore="HardcodedText" />
 
     <ProgressBar
         android:id="@+id/progressbar"
