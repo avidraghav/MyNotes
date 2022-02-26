@@ -11,7 +11,7 @@ import java.util.*
 /**
  * Created by Raghav Aggarwal on 26/02/22.
  */
-class DatePickerFragment(private val dateListener: (String) -> Unit) : DialogFragment(),
+class DatePickerFragment(private val deadLineListener: (String) -> Unit) : DialogFragment(),
     DatePickerDialog.OnDateSetListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -28,8 +28,8 @@ class DatePickerFragment(private val dateListener: (String) -> Unit) : DialogFra
         calendar[Calendar.YEAR] = year
         calendar[Calendar.MONTH] = month
         calendar[Calendar.DAY_OF_MONTH] = day
-        val currentDateString: String =
+        val dateString: String =
             DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
-        dateListener(currentDateString)
+        deadLineListener(dateString)
     }
 }

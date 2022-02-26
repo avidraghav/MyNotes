@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="8dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         tools:text="Title"
         android:layout_marginTop="8dp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -30,6 +30,16 @@
         tools:text="Description"
         android:textColor="@color/purple_200"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_deadline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Sunday, 22 February, 2021"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
     <ImageView
         android:id="@+id/iv_delete"
