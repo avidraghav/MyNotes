@@ -35,6 +35,12 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
             key = task?.id
         }
 
+        binding.date.setOnClickListener {
+            val datePickerFragment = DatePickerFragment { date ->
+                binding.selectedDate.text = date
+            }
+            datePickerFragment.show(childFragmentManager, "datePicker")
+        }
 
         binding.btnSaveTask.setOnClickListener {
             val title = binding.etTaskTitle.text.toString()
