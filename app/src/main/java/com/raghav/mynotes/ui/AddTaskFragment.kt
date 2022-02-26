@@ -32,13 +32,21 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
             val task = args.task
             binding.etTaskTitle.setText(task?.title)
             binding.description.setText(task?.description)
+            binding.deadline.text = task?.deadLine
             key = task?.id
         }
 
+        binding.date.setOnClickListener {
+            val datePickerFragment = DatePickerFragment { deadLine ->
+                binding.deadline.text = deadLine
+            }
+            datePickerFragment.show(childFragmentManager, "datePicker")
+        }
 
         binding.btnSaveTask.setOnClickListener {
             val title = binding.etTaskTitle.text.toString()
             val description = binding.description.text.toString()
+            val deadLine = binding.deadline.text.toString()
 
             when {
                 TextUtils.isEmpty(title) -> {
@@ -47,8 +55,11 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
                 TextUtils.isEmpty(description) -> {
                     ToastUtils.showToast(requireContext(), "Please Enter Task Description")
                 }
+                TextUtils.isEmpty(deadLine) -> {
+                    ToastUtils.showToast(requireContext(), "Please Select a Deadline")
+                }
                 else -> {
-                    val aTask = TaskEntity(title, description, key)
+                    val aTask = TaskEntity(title, description, key, deadLine)
                     saveTask(aTask)
                 }
             }
@@ -63,7 +74,6 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
             ToastUtils.showToast(requireContext(), "Task Saved")
             findNavController().navigate(R.id.action_addTaskFragment_to_allTasksFragment)
         }
-
     }
 
     private fun hideProgressBar() {

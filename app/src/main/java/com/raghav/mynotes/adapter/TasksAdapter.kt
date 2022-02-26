@@ -32,6 +32,9 @@ class TasksAdapter(
             binding.tvTitle.text = item.title
             binding.tvDescription.text = item.description
 
+            if (item.deadLine != "0")
+                binding.tvDeadline.text = item.deadLine
+
             binding.root.setOnClickListener {
                 val action =
                     AllTasksFragmentDirections.actionAllTasksFragmentToAddTaskFragment(item)
