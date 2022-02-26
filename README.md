@@ -2,7 +2,7 @@
 **MyNotes** is a Demo app which demonstrates the use of MVVM architecture, Dependency Injection, Navigation Component Library, Room Database, LiveData, Coroutines and other **Modern Android Development** Practices. 
 
 # :movie_camera: Working Demo
-<img src="https://user-images.githubusercontent.com/49483235/149808793-bb684b3f-b802-48e5-b728-536f8c4cecef.gif" width="600" height="700">
+<img src="https://user-images.githubusercontent.com/49483235/155854353-e6d00544-5e70-4d78-8d1b-9623299b68f2.gif" width="600" height="700">
 
 # 🗡️ Dependency Injection
 The project uses [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for Dependency Injection :syringe: If you are a begginer with
