@@ -43,7 +43,7 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                         binding.rvTasks.adapter = TasksAdapter(emptyList())
                     } else {
                         binding.rvTasks.adapter = data.data?.let {
-                            TasksAdapter(it.reversed()) { binding, item ->
+                            TasksAdapter(it) { binding, item ->
                                 binding.ivDelete.setOnClickListener {
                                     viewModel.deleteTask(item)
                                     ToastUtils.showToast(requireContext(), "Task Deleted")
