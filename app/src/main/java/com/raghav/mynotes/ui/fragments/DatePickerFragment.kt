@@ -1,4 +1,4 @@
-package com.raghav.mynotes.ui
+package com.raghav.mynotes.ui.fragments
 
 import android.app.DatePickerDialog
 import android.app.Dialog

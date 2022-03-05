@@ -1,4 +1,4 @@
-package com.raghav.mynotes.ui
+package com.raghav.mynotes.ui.fragments
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.raghav.mynotes.R
 import com.raghav.mynotes.databinding.FragmentAddTaskBinding
 import com.raghav.mynotes.models.TaskEntity
+import com.raghav.mynotes.ui.AddTasksVM
 import com.raghav.mynotes.utils.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 

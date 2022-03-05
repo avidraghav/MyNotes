@@ -1,4 +1,4 @@
-package com.raghav.mynotes.ui
+package com.raghav.mynotes.ui.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.raghav.mynotes.R
 import com.raghav.mynotes.adapter.TasksAdapter
 import com.raghav.mynotes.databinding.FragmentAllTasksBinding
+import com.raghav.mynotes.ui.AllTasksVM
 import com.raghav.mynotes.utils.Resource
 import com.raghav.mynotes.utils.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint

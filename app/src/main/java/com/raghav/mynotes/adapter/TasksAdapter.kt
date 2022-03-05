@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.raghav.mynotes.databinding.ItemTaskBinding
 import com.raghav.mynotes.models.TaskEntity
-import com.raghav.mynotes.ui.AllTasksFragmentDirections
+import com.raghav.mynotes.ui.fragments.AllTasksFragmentDirections
 
 class TasksAdapter(
     private val tasks: List<TaskEntity>,

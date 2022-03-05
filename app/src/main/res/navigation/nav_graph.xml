@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/allTasksFragment"
-        android:name="com.raghav.mynotes.ui.AllTasksFragment"
+        android:name="com.raghav.mynotes.ui.fragments.AllTasksFragment"
         android:label="AllTasksFragment">
         <action
             android:id="@+id/action_allTasksFragment_to_addTaskFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.raghav.mynotes.ui.AddTaskFragment"
+        android:name="com.raghav.mynotes.ui.fragments.AddTaskFragment"
         android:label="AddTaskFragment">
         <action
             android:id="@+id/action_addTaskFragment_to_allTasksFragment"
