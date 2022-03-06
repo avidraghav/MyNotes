@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.widget.Toast
+import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -27,11 +27,15 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
         binding = FragmentAllTasksBinding.bind(view)
         setUpRecyclerView()
 
-
         binding.btnAddTasks.setOnClickListener {
             findNavController().navigate(R.id.action_allTasksFragment_to_addTaskFragment)
         }
-
+        binding.checkboxSort.setOnClickListener {
+            val isChecked = binding.checkboxSort.isChecked
+            if (isChecked) {
+                // TODO
+            }
+        }
 
         viewModel.tasks.observe(viewLifecycleOwner, { data ->
             when (data) {
@@ -54,10 +58,24 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                 }
                 is Resource.Error -> {
                     hideProgressBar()
-                    Toast.makeText(activity, data.message.toString(), Toast.LENGTH_SHORT).show()
+                    ToastUtils.showToast(requireContext(), data.message.toString())
                 }
             }
         })
+    }
+
+    fun onCheckboxClicked(view: View) {
+        if (view is CheckBox) {
+            val checked: Boolean = view.isChecked
+
+            when (view.id) {
+                R.id.checkbox_sort -> {
+                    if (checked) {
+                        ToastUtils.showToast(requireContext(), "ajknaj")
+                    }
+                }
+            }
+        }
     }
 
     private fun setUpRecyclerView() {
