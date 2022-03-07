@@ -14,6 +14,7 @@ import com.raghav.mynotes.R
 import com.raghav.mynotes.databinding.FragmentAddTaskBinding
 import com.raghav.mynotes.models.TaskEntity
 import com.raghav.mynotes.ui.AddTasksVM
+import com.raghav.mynotes.utils.DateTimeUtils.toTime
 import com.raghav.mynotes.utils.ToastUtils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +34,7 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
             val task = args.task
             binding.etTaskTitle.setText(task?.title)
             binding.description.setText(task?.description)
-            binding.deadline.text = task?.deadLine
+            binding.deadline.text = task?.deadLineString
             key = task?.id
         }
 
@@ -49,6 +50,8 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
             val description = binding.description.text.toString()
             val deadLine = binding.deadline.text.toString()
 
+            val deadLineLong = deadLine.toTime() ?: 0
+
             when {
                 TextUtils.isEmpty(title) -> {
                     ToastUtils.showToast(requireContext(), "Please Enter A Title")
@@ -60,7 +63,7 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
                     ToastUtils.showToast(requireContext(), "Please Select a Deadline")
                 }
                 else -> {
-                    val aTask = TaskEntity(title, description, key, deadLine)
+                    val aTask = TaskEntity(key, title, description, deadLine, deadLineLong)
                     saveTask(aTask)
                 }
             }

@@ -24,7 +24,9 @@ object AppModule {
         context,
         TasksDatabase::class.java,
         "tasks.db"
-    ).build()
+    )
+        .fallbackToDestructiveMigration()
+        .build()
 
     @Singleton
     @Provides

@@ -32,8 +32,8 @@ class TasksAdapter(
             binding.tvTitle.text = item.title
             binding.tvDescription.text = item.description
 
-            if (item.deadLine != "0")
-                binding.tvDeadline.text = item.deadLine
+            if (item.deadLineString != "0")
+                binding.tvDeadline.text = item.deadLineString
 
             binding.root.setOnClickListener {
                 val action =
