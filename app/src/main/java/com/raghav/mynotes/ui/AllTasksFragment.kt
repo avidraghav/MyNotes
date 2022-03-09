@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -33,8 +32,9 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
         binding.checkboxSort.setOnClickListener {
             val isChecked = binding.checkboxSort.isChecked
             if (isChecked) {
-                // TODO
-            }
+                viewModel.getTasks(true)
+            } else
+                viewModel.getTasks()
         }
 
         viewModel.tasks.observe(viewLifecycleOwner, { data ->
@@ -62,20 +62,6 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                 }
             }
         })
-    }
-
-    fun onCheckboxClicked(view: View) {
-        if (view is CheckBox) {
-            val checked: Boolean = view.isChecked
-
-            when (view.id) {
-                R.id.checkbox_sort -> {
-                    if (checked) {
-                        ToastUtils.showToast(requireContext(), "ajknaj")
-                    }
-                }
-            }
-        }
     }
 
     private fun setUpRecyclerView() {
