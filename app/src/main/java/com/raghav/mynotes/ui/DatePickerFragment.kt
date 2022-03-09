@@ -2,6 +2,7 @@ package com.raghav.mynotes.ui
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.os.Build
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
@@ -20,7 +21,11 @@ class DatePickerFragment(private val deadLineListener: (String) -> Unit) : Dialo
         val month = calendar[Calendar.MONTH]
         val day = calendar[Calendar.DAY_OF_MONTH]
 
-        return DatePickerDialog(requireContext(), this, year, month, day)
+        val datePickerDialog = DatePickerDialog(requireContext(), this, year, month, day)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
+        }
+        return datePickerDialog
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
