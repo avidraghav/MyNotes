@@ -61,8 +61,6 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
                 else -> {
                     val aTask = TaskEntity(title, description, key, deadLine)
                     saveTask(aTask)
-                    ToastUtils.showToast(requireContext(), "Task Saved")
-                    findNavController().navigate(R.id.action_addTaskFragment_to_allTasksFragment)
                 }
             }
         }
@@ -73,6 +71,8 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
             showProgressBar()
             viewModel.saveTask(aTask)
             hideProgressBar()
+            ToastUtils.showToast(requireContext(), "Task Saved")
+            findNavController().navigate(R.id.action_addTaskFragment_to_allTasksFragment)
         }
     }
 

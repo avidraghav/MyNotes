@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raghav.mynotes.models.TaskEntity
 import com.raghav.mynotes.repository.TasksRepository
-import com.raghav.mynotes.utils.DateTimeUtils.toTime
 import com.raghav.mynotes.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -23,14 +22,11 @@ class AllTasksVM @Inject constructor(private val repository: TasksRepository) : 
         getTasks()
     }
 
-    fun getTasks(sort: Boolean = false) {
+    private fun getTasks() {
         viewModelScope.launch {
             _tasks.postValue(Resource.Loading())
             repository.getAllTasks().collect {
-                if (sort)
-                    _tasks.postValue(Resource.Success(sortTasks(it)))
-                else
-                    _tasks.postValue(Resource.Success(it))
+                _tasks.postValue(Resource.Success(it))
             }
         }
     }
@@ -40,11 +36,4 @@ class AllTasksVM @Inject constructor(private val repository: TasksRepository) : 
             repository.deleteTask(task)
         }
     }
-
-    private fun sortTasks(tasks: List<TaskEntity>): List<TaskEntity> {
-        return tasks.sortedBy {
-            it.deadLine.toTime()
-        }.reversed()
-    }
-
 }
