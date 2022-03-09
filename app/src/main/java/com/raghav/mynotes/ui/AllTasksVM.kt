@@ -44,7 +44,7 @@ class AllTasksVM @Inject constructor(private val repository: TasksRepository) : 
     private fun sortTasks(tasks: List<TaskEntity>): List<TaskEntity> {
         return tasks.sortedBy {
             it.deadLine.toTime()
-        }.reversed()
+        }
     }
 
 }
