@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -27,11 +26,16 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
         binding = FragmentAllTasksBinding.bind(view)
         setUpRecyclerView()
 
-
         binding.btnAddTasks.setOnClickListener {
             findNavController().navigate(R.id.action_allTasksFragment_to_addTaskFragment)
         }
-
+        binding.checkboxSort.setOnClickListener {
+            val isChecked = binding.checkboxSort.isChecked
+            if (isChecked) {
+                viewModel.getTasks(true)
+            } else
+                viewModel.getTasks()
+        }
 
         viewModel.tasks.observe(viewLifecycleOwner, { data ->
             when (data) {
@@ -43,7 +47,7 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                         binding.rvTasks.adapter = TasksAdapter(emptyList())
                     } else {
                         binding.rvTasks.adapter = data.data?.let {
-                            TasksAdapter(it.reversed()) { binding, item ->
+                            TasksAdapter(it) { binding, item ->
                                 binding.ivDelete.setOnClickListener {
                                     viewModel.deleteTask(item)
                                     ToastUtils.showToast(requireContext(), "Task Deleted")
@@ -54,7 +58,7 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                 }
                 is Resource.Error -> {
                     hideProgressBar()
-                    Toast.makeText(activity, data.message.toString(), Toast.LENGTH_SHORT).show()
+                    ToastUtils.showToast(requireContext(), data.message.toString())
                 }
             }
         })
