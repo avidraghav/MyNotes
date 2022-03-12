@@ -59,7 +59,7 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
                     ToastUtils.showToast(requireContext(), "Please Select a Deadline")
                 }
                 else -> {
-                    val aTask = TaskEntity(title, description, key, deadLine)
+                    val aTask = TaskEntity(key, title, description, deadLine)
                     saveTask(aTask)
                     ToastUtils.showToast(requireContext(), "Task Saved")
                     findNavController().navigate(R.id.action_addTaskFragment_to_allTasksFragment)

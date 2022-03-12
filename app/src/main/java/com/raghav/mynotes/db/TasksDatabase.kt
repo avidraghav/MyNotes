@@ -7,7 +7,7 @@ import com.raghav.mynotes.models.TaskEntity
 
 @Database(
     entities = [TaskEntity::class],
-    version = 2,
+    version = 3,
     autoMigrations = [AutoMigration(from = 1, to = 2)]
 )
 abstract class TasksDatabase : RoomDatabase() {

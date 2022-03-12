@@ -2,6 +2,7 @@ package com.raghav.mynotes.di.module
 
 import android.content.Context
 import androidx.room.Room
+import com.raghav.mynotes.db.RoomMigrations.MIGRATION_2_3
 import com.raghav.mynotes.db.TasksDao
 import com.raghav.mynotes.db.TasksDatabase
 import com.raghav.mynotes.repository.TasksRepository
@@ -24,7 +25,8 @@ object AppModule {
         context,
         TasksDatabase::class.java,
         "tasks.db"
-    ).build()
+    ).addMigrations(MIGRATION_2_3)
+        .build()
 
     @Singleton
     @Provides
