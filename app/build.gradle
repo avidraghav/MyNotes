@@ -42,6 +42,11 @@ android {
     buildFeatures{
         viewBinding true
     }
+
+    sourceSets {
+        // Adds exported schema location as test app assets.
+        getByName("androidTest").assets.srcDir("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -76,6 +81,13 @@ dependencies {
     //Dagger-Hilt Dependencies
     implementation 'com.google.dagger:hilt-android:2.38.1'
     kapt 'com.google.dagger:hilt-android-compiler:2.38.1'
+
+    //room-testing
+    androidTestImplementation("androidx.room:room-testing:2.4.1")
+
+    //Library for making assertions in Test Cases
+    androidTestImplementation "com.google.truth:truth:1.0.1"
+
 }
 
 // Allow references to generated code

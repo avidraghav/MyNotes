@@ -2,7 +2,7 @@ package com.raghav.mynotes.di.module
 
 import android.content.Context
 import androidx.room.Room
-import com.raghav.mynotes.db.RoomMigrations.MIGRATION_2_3
+import com.raghav.mynotes.db.Migrations.MIGRATION_2_3
 import com.raghav.mynotes.db.TasksDao
 import com.raghav.mynotes.db.TasksDatabase
 import com.raghav.mynotes.repository.TasksRepository
