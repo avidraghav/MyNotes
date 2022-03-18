@@ -5,8 +5,11 @@
 <img src="https://user-images.githubusercontent.com/49483235/158948517-970c6250-51b6-43a1-85ac-563090295f1b.gif" width="400" height="600">
 
 # 🗡️ Dependency Injection
-The project uses [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for Dependency Injection :syringe: If you are a begginer with
-MVVM then I highly recommend to start with Manual Dependency injection method and then move to Hilt, see branch [***`di-ManualInjection`***](https://github.com/avidraghav/MyNotes/tree/di-ManualInjection) for implementation
+The project uses [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for Dependency Injection :syringe: 
+
+I highly recommend to start with Manual Dependency injection method and then move to Hilt, see branch [***`di-ManualInjection`***](https://github.com/avidraghav/MyNotes/tree/di-ManualInjection) for implementation.
+
+- To Implement DI with Hilt see  [***`di-hilt`***](https://github.com/avidraghav/MyNotes/tree/di-hilt)
 
 # :wrench: Built With
 - [Kotlin](https://kotlinlang.org/) - Programming Language Used in the app.
