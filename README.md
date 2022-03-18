@@ -2,7 +2,7 @@
 **MyNotes** is a Demo app which demonstrates the use of MVVM architecture, Dependency Injection, Navigation Component Library, Room Database, LiveData, Coroutines and other **Modern Android Development** Practices. 
 
 # :movie_camera: Working Demo
-<img src="https://user-images.githubusercontent.com/49483235/155854353-e6d00544-5e70-4d78-8d1b-9623299b68f2.gif" width="600" height="700">
+<img src="https://user-images.githubusercontent.com/49483235/158948517-970c6250-51b6-43a1-85ac-563090295f1b.gif" width="400" height="600">
 
 # 🗡️ Dependency Injection
 The project uses [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for Dependency Injection :syringe: If you are a begginer with
@@ -18,6 +18,10 @@ MVVM then I highly recommend to start with Manual Dependency injection method an
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Used to observe the data on the UI layer
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - To Store UI-related data that isnt destroyed on UI changes.
 - [RecylerView](https://developer.android.com/guide/topics/ui/layout/recyclerview) - To Display data in a list format.
+- [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - For Dependency Injection
+
+# :white_check_mark: Tests
+- For an example of Room Database Schema Migration see branch [***`room-migration-testing`***](https://github.com/avidraghav/MyNotes/tree/room-migration-testing)
 
 # 🏗️ Architecture Design
 
