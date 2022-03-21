@@ -28,8 +28,7 @@ android {
 
     buildTypes {
         release {
-            // Enables code shrinking, obfuscation, and optimization for only
-            // your project's release build type.
+            // Enables code shrinking, obfuscation, and optimization
             minifyEnabled true
 
             // Enables resource shrinking, which is performed by the
