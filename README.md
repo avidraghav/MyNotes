@@ -1,5 +1,5 @@
 # :pencil: MyNotes
-**MyNotes** is a Demo app which demonstrates the use of MVVM architecture, Dependency Injection, Navigation Component Library, Room Database, LiveData, Coroutines and other **Modern Android Development** Practices. 
+**MyNotes** is a Demo app which demonstrates the use of MVVM architecture, Dependency Injection, Navigation Component Library, Room Database, LiveData, Coroutines, Datastore and other **Modern Android Development** Practices. 
 
 # :movie_camera: Working Demo
 <img src="https://user-images.githubusercontent.com/49483235/158948517-970c6250-51b6-43a1-85ac-563090295f1b.gif" width="400" height="600">
@@ -22,6 +22,10 @@ I highly recommend to start with Manual Dependency injection method and then mov
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - To Store UI-related data that isnt destroyed on UI changes.
 - [RecylerView](https://developer.android.com/guide/topics/ui/layout/recyclerview) - To Display data in a list format.
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - For Dependency Injection
+- [Datastore](https://developer.android.com/topic/libraries/architecture/datastore) - For Storing Data
+
+ see [***`feature/Prefernces-Datastore`***](https://github.com/avidraghav/MyNotes/tree/feature/Prefernces-Datastore) to Implement Preferences Datastore by following Abstraction
+
 
 # :white_check_mark: Tests
 - For an example of Room Database Schema Migration see branch [***`room-migration-testing`***](https://github.com/avidraghav/MyNotes/tree/room-migration-testing)
