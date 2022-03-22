@@ -1,11 +1,13 @@
 package com.raghav.mynotes.models
 
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "tasks")
+@Keep
 data class TaskEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = 0,

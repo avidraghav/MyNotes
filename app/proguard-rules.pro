@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Not to obfuscate any classes inside models package
+-keep class com.raghav.mynotes.models.*
+# Note - not needed currently as the Keep annotation has already been added to the single class inside models package
