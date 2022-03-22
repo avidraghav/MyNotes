@@ -19,10 +19,6 @@ class AllTasksVM @Inject constructor(private val repository: TasksRepository) : 
     private val _tasks = MutableLiveData<Resource<List<TaskEntity>>>()
     val tasks: LiveData<Resource<List<TaskEntity>>> = _tasks
 
-    init {
-        getTasks()
-    }
-
     fun getTasks(sort: Boolean = false) {
         viewModelScope.launch {
             _tasks.postValue(Resource.Loading())
