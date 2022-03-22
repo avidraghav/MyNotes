@@ -93,6 +93,9 @@ dependencies {
     //Library for making assertions in Test Cases
     androidTestImplementation "com.google.truth:truth:1.0.1"
 
+    // Preferences Datastore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
 }
 
 // Allow references to generated code
