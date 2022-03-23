@@ -10,7 +10,6 @@ The project uses [Hilt](https://developer.android.com/training/dependency-inject
 I highly recommend to start with Manual Dependency injection method and then move to Hilt, see branch [***`di-ManualInjection`***](https://github.com/avidraghav/MyNotes/tree/di-ManualInjection) for implementation.
 
 - To Implement DI with Hilt see  [***`di-hilt`***](https://github.com/avidraghav/MyNotes/tree/di-hilt)
-
 # :wrench: Built With
 - [Kotlin](https://kotlinlang.org/) - Programming Language Used in the app.
 - [Navigation Component Library](https://developer.android.com/guide/navigation) - For setting up app's navigation.
