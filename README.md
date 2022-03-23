@@ -36,7 +36,7 @@ I highly recommend to start with Manual Dependency injection method and then mov
 
 # This project is made for educational purposes so don't be shy of asking any questions about any concept from the app or about android developement. 
 Do open <a href ="https://github.com/avidraghav/MVVM-TodoApp/issues" target="_blank">issues</a>
-  and raise PRs to I'll try my best to assist you. :smiley:
+  and raise PRs to I'll try my best to assist you. If this project helps you then do leave a 🌟 :smiley:
 
 ## 📩 Contact
 
