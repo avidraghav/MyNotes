@@ -12,11 +12,11 @@ object ToastUtils {
     var mToast: Toast? = null
 
     @SuppressLint("ShowToast")
-    fun showToast(context: Context, message: String) {
+    fun Context.showToast(message: String) {
         if (mToast != null) {
             mToast?.cancel()
         }
-        mToast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
+        mToast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         mToast?.show()
     }
 }

@@ -1,7 +1,6 @@
 package com.raghav.mynotes.ui
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -13,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.raghav.mynotes.R
 import com.raghav.mynotes.databinding.FragmentAddTaskBinding
 import com.raghav.mynotes.models.TaskEntity
-import com.raghav.mynotes.utils.ToastUtils
+import com.raghav.mynotes.utils.ToastUtils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,10 +36,7 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
         }
 
         binding.date.setOnClickListener {
-            val datePickerFragment = DatePickerFragment { deadLine ->
-                binding.deadline.text = deadLine
-            }
-            datePickerFragment.show(childFragmentManager, "datePicker")
+            showDatePicker()
         }
 
         binding.btnSaveTask.setOnClickListener {
@@ -48,30 +44,57 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
             val description = binding.description.text.toString()
             val deadLine = binding.deadline.text.toString()
 
-            when {
-                TextUtils.isEmpty(title) -> {
-                    ToastUtils.showToast(requireContext(), "Please Enter A Title")
-                }
-                TextUtils.isEmpty(description) -> {
-                    ToastUtils.showToast(requireContext(), "Please Enter Task Description")
-                }
-                TextUtils.isEmpty(deadLine) -> {
-                    ToastUtils.showToast(requireContext(), "Please Select a Deadline")
-                }
-                else -> {
-                    val aTask = TaskEntity(key, title, description, deadLine)
-                    saveTask(aTask)
-                    ToastUtils.showToast(requireContext(), "Task Saved")
-                    findNavController().navigate(R.id.action_addTaskFragment_to_allTasksFragment)
-                }
+            val isInputValid = validateInput(title, description, deadLine)
+
+            if (isInputValid.first) {
+                val aTask = TaskEntity(
+                    id = key,
+                    title = title,
+                    description = description,
+                    deadLine = deadLine
+                )
+                saveTask(aTask)
+                requireContext().showToast("Task Saved")
+                findNavController().navigate(R.id.action_addTaskFragment_to_allTasksFragment)
+            } else {
+                requireContext().showToast(isInputValid.second)
             }
         }
     }
 
-    private fun saveTask(aTask: TaskEntity) {
+    private fun showDatePicker() {
+        val datePickerFragment = DatePickerFragment { deadLine ->
+            binding.deadline.text = deadLine
+        }
+        datePickerFragment.show(childFragmentManager, "datePicker")
+    }
+
+    // function for validating input, can be extended in future
+    private fun validateInput(
+        title: String,
+        description: String,
+        deadline: String
+    ): Pair<Boolean, String> {
+        var message = ""
+        if (title.isEmpty()) {
+            message = "Please Enter A Title"
+            return Pair(false, message)
+        }
+        if (description.isEmpty()) {
+            message = "Please Enter Task Description"
+            return Pair(false, message)
+        }
+        if (deadline.isEmpty()) {
+            message = "Please Select a Deadline"
+            return Pair(false, message)
+        }
+        return Pair(true, message)
+    }
+
+    private fun saveTask(task: TaskEntity) {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             showProgressBar()
-            viewModel.saveTask(aTask)
+            viewModel.saveTask(task)
             hideProgressBar()
         }
     }

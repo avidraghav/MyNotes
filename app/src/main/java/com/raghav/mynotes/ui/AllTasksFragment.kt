@@ -17,7 +17,7 @@ import com.raghav.mynotes.databinding.FragmentAllTasksBinding
 import com.raghav.mynotes.prefstore.TaskDatastore
 import com.raghav.mynotes.prefstore.TaskDatastoreImpl
 import com.raghav.mynotes.utils.Resource
-import com.raghav.mynotes.utils.ToastUtils
+import com.raghav.mynotes.utils.ToastUtils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
@@ -64,7 +64,7 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                                     TasksAdapter(it) { binding, item ->
                                         binding.ivDelete.setOnClickListener {
                                             viewModel.deleteTask(item)
-                                            ToastUtils.showToast(requireContext(), "Task Deleted")
+                                            requireContext().showToast("Task Deleted")
                                         }
                                     }
                                 }
@@ -73,7 +73,7 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                         }
                         is Resource.Error -> {
                             hideProgressBar()
-                            ToastUtils.showToast(requireContext(), data.message.toString())
+                            requireContext().showToast(data.message.toString())
                         }
                     }
                 }
@@ -116,8 +116,8 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 datastore.setValue(
-                        TaskDatastoreImpl.IS_SORTED_KEY,
-                        isChecked
+                    TaskDatastoreImpl.IS_SORTED_KEY,
+                    isChecked
                 )
             }
         }
