@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.raghav.mynotes.R
 import com.raghav.mynotes.databinding.FragmentAddTaskBinding
 import com.raghav.mynotes.models.TaskEntity
-import com.raghav.mynotes.utils.ToastUtils.showToast
+import com.raghav.mynotes.utils.SnackBarUtils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,10 +54,10 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
                     deadLine = deadLine
                 )
                 saveTask(aTask)
-                requireContext().showToast("Task Saved")
+                requireContext().showSnackBar(binding.root, "Task Saved")
                 findNavController().navigate(R.id.action_addTaskFragment_to_allTasksFragment)
             } else {
-                requireContext().showToast(isInputValid.second)
+                requireContext().showSnackBar(binding.root, isInputValid.second)
             }
         }
     }

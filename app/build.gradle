@@ -96,6 +96,9 @@ dependencies {
     // Preferences Datastore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
+    // Leak Canary (Debug Implementation as this Library should not get included in release build)
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
+
 }
 
 // Allow references to generated code
