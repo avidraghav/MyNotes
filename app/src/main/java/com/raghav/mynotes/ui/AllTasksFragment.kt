@@ -17,7 +17,7 @@ import com.raghav.mynotes.databinding.FragmentAllTasksBinding
 import com.raghav.mynotes.prefstore.TaskDatastore
 import com.raghav.mynotes.prefstore.TaskDatastoreImpl
 import com.raghav.mynotes.utils.Resource
-import com.raghav.mynotes.utils.ToastUtils
+import com.raghav.mynotes.utils.SnackBarUtils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
-    lateinit var binding: FragmentAllTasksBinding
+    private lateinit var binding: FragmentAllTasksBinding
 
     private val viewModel by viewModels<AllTasksVM>()
 
@@ -64,7 +64,11 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                                     TasksAdapter(it) { binding, item ->
                                         binding.ivDelete.setOnClickListener {
                                             viewModel.deleteTask(item)
-                                            ToastUtils.showToast(requireContext(), "Task Deleted")
+                                            requireContext().showSnackBar(
+                                                binding.root,
+                                                "Deleted",
+                                                700
+                                            )
                                         }
                                     }
                                 }
@@ -73,7 +77,7 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
                         }
                         is Resource.Error -> {
                             hideProgressBar()
-                            ToastUtils.showToast(requireContext(), data.message.toString())
+                            requireContext().showSnackBar(binding.root, data.message.toString())
                         }
                     }
                 }
@@ -116,8 +120,8 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 datastore.setValue(
-                        TaskDatastoreImpl.IS_SORTED_KEY,
-                        isChecked
+                    TaskDatastoreImpl.IS_SORTED_KEY,
+                    isChecked
                 )
             }
         }
@@ -126,5 +130,4 @@ class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
     private fun enableSortCheckBox(isEnabled: Boolean) {
         binding.checkboxSort.isEnabled = isEnabled
     }
-
 }
