@@ -1,14 +1,17 @@
 package com.raghav.mynotes.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.raghav.mynotes.R
+import com.raghav.mynotes.databinding.ActivityMainBinding
+import com.raghav.mynotes.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+
+    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
     }
 }
