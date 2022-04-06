@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -12,20 +11,22 @@ import androidx.navigation.fragment.navArgs
 import com.raghav.mynotes.R
 import com.raghav.mynotes.databinding.FragmentAddTaskBinding
 import com.raghav.mynotes.models.TaskEntity
+import com.raghav.mynotes.ui.base.BaseFragment
 import com.raghav.mynotes.utils.SnackBarUtils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
-    private lateinit var binding: FragmentAddTaskBinding
+class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
+
     private val args: AddTaskFragmentArgs by navArgs()
     private var key: Int? = null
 
     private val viewModel by viewModels<AddTasksVM>()
 
+    override fun getViewBinding() = FragmentAddTaskBinding.inflate(layoutInflater)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentAddTaskBinding.bind(view)
 
         if (args.task != null) {
             val task = args.task

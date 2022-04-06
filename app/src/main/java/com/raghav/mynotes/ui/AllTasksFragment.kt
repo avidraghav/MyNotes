@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +15,7 @@ import com.raghav.mynotes.adapter.TasksAdapter
 import com.raghav.mynotes.databinding.FragmentAllTasksBinding
 import com.raghav.mynotes.prefstore.TaskDatastore
 import com.raghav.mynotes.prefstore.TaskDatastoreImpl
+import com.raghav.mynotes.ui.base.BaseFragment
 import com.raghav.mynotes.utils.Resource
 import com.raghav.mynotes.utils.SnackBarUtils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,17 +24,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AllTasksFragment : Fragment(R.layout.fragment_all_tasks) {
-    private lateinit var binding: FragmentAllTasksBinding
+class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
 
     private val viewModel by viewModels<AllTasksVM>()
 
     @Inject
     lateinit var datastore: TaskDatastore
 
+    override fun getViewBinding() = FragmentAllTasksBinding.inflate(layoutInflater)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentAllTasksBinding.bind(view)
         setUpRecyclerView()
 
         viewLifecycleOwner.lifecycleScope.launch {
