@@ -12,7 +12,7 @@ class MyNotesApplication : Application() {
         super.onCreate()
 
         if (BuildConfig.DEBUG) {
-            enableLeakCanary(true)
+            enableLeakCanary(false)
         }
     }
 }
