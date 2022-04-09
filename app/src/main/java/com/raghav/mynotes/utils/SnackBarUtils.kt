@@ -11,10 +11,14 @@ import com.raghav.mynotes.R
  */
 object SnackBarUtils {
 
-    fun Context.showSnackBar(view: View, message: String, duration: Int = Snackbar.LENGTH_SHORT) {
-        val snackBar = Snackbar.make(view, message, duration)
-        if (duration != Snackbar.LENGTH_SHORT)
-            snackBar.duration = duration
+    fun Context.showSnackBar(
+        rootView: View,
+        message: String,
+        anchorView: View? = null,
+    ) {
+        val snackBar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT)
+        if (anchorView != null)
+            snackBar.anchorView = anchorView
         snackBar.setBackgroundTint(ContextCompat.getColor(this, R.color.teal_200)).show()
     }
 
