@@ -61,13 +61,13 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                                 saveSortCheckBoxState(false)
                             } else {
                                 binding.rvTasks.adapter = data.data?.let {
-                                    TasksAdapter(it) { binding, item ->
-                                        binding.ivDelete.setOnClickListener {
+                                    TasksAdapter(it) { taskItemBinding, item ->
+                                        taskItemBinding.ivDelete.setOnClickListener {
                                             viewModel.deleteTask(item)
                                             requireContext().showSnackBar(
-                                                binding.root,
-                                                "Deleted",
-                                                700
+                                                rootView = binding.root,
+                                                message = "Deleted",
+                                                anchorView = binding.btnAddTasks,
                                             )
                                         }
                                     }
@@ -77,7 +77,11 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                         }
                         is Resource.Error -> {
                             hideProgressBar()
-                            requireContext().showSnackBar(binding.root, data.message.toString())
+                            requireContext().showSnackBar(
+                                rootView = binding.root,
+                                message = data.message.toString(),
+                                anchorView = binding.btnAddTasks,
+                            )
                         }
                     }
                 }
@@ -87,6 +91,7 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
         binding.btnAddTasks.setOnClickListener {
             findNavController().navigate(R.id.action_allTasksFragment_to_addTaskFragment)
         }
+
         binding.checkboxSort.setOnClickListener {
             val isChecked = binding.checkboxSort.isChecked
             if (isChecked) {
@@ -100,9 +105,7 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                 saveSortCheckBoxState(false)
             }
         }
-
     }
-
 
     private fun setUpRecyclerView() {
         binding.rvTasks.layoutManager = LinearLayoutManager(activity)
