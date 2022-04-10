@@ -1,13 +1,12 @@
 package com.raghav.mynotes.repository
 
-import com.raghav.mynotes.db.TasksDao
 import com.raghav.mynotes.models.TaskEntity
-import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
-class TasksRepository @Inject constructor(private val dao: TasksDao) {
+interface TasksRepository {
+    suspend fun saveTask(task: TaskEntity)
 
-    suspend fun saveTask(task: TaskEntity) = dao.saveTask(task)
-    fun getAllTasks() = dao.getTasks()
-    suspend fun deleteTask(task: TaskEntity) = dao.deleteTask(task)
+    fun getAllTasks(): Flow<List<TaskEntity>>
 
+    suspend fun deleteTask(task: TaskEntity)
 }
