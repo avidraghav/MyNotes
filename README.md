@@ -28,6 +28,7 @@ I highly recommend to start with Manual Dependency injection method and then mov
 
 # :white_check_mark: Tests
 - For an example of Room Database Schema Migration see branch [***`room-migration-testing`***](https://github.com/avidraghav/MyNotes/tree/room-migration-testing)
+- For Implementing Instrumented Test Cases for Room Database see branch [***`testing`***](https://github.com/avidraghav/MyNotes/tree/testing)
 
 # 🏗️ Architecture Design
 
