@@ -20,9 +20,6 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Print contents in current directory
-        run: ls -la
-
       - name: Unit tests
         run: ./gradlew testDebugUnitTest --stacktrace
 
@@ -31,5 +28,11 @@ jobs:
         with:
           api-level: 29
           script: ./gradlew connectedCheck --stacktrace
+
+      - name: Upload Reports
+        uses: actions/upload-artifact@v1
+        with:
+          name: reports
+          path: app/build/reports
 
 
