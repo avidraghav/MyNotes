@@ -7,7 +7,6 @@ on:
   pull_request:
     branches: [ main ]
 
-# 3
 jobs:
   build-and-test:
     name: Build and run tests
