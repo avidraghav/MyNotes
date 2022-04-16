@@ -77,7 +77,7 @@ class AllTasksVMTest {
 
         val value = allTasksVM.tasks.getOrAwaitValueTest()
 
-        assertThat(value.data).isEqualTo(Resource.Success(tasksList).data)
+        assertThat(value.data).isEqualTo(Resource.Success(tasksList).data?.reversed())
     }
 }
 
