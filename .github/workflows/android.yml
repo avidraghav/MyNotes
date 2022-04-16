@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-test:
     name: Build and run tests
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout current repository in ubuntu's file system
         uses: actions/checkout@v2
@@ -29,7 +29,7 @@ jobs:
       - name: Instrumentation tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 30
+          api-level: 30   #Android 11
           arch: x86
           profile: Nexus 6
           avd-name: test
