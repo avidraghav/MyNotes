@@ -11,7 +11,7 @@ jobs:
     name: Build, run tests and Upload test reports
     runs-on: macos-latest
     steps:
-      - name: Checkout current repository in ubuntu's file system
+      - name: Checkout current repository in macos' file system
         uses: actions/checkout@v2
       - name: Setup JDK 11
         uses: actions/setup-java@v2
