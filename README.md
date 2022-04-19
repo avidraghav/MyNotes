@@ -1,5 +1,17 @@
 # :pencil: MyNotes
-**MyNotes** is a Demo app which demonstrates the use of MVVM architecture, Dependency Injection, Navigation Component Library, Room Database, LiveData, Coroutines, Datastore and other **Modern Android Development** Practices. 
+![Tests](https://github.com/avidraghav/MyNotes/actions/workflows/android.yml/badge.svg)
+[![GitHub license](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
+![GitHub stars](https://img.shields.io/github/stars/avidraghav/MyNotes?style=social)
+![GitHub forks](https://img.shields.io/github/forks/avidraghav/MyNotes?style=social)
+![Twitter Follow](https://img.shields.io/twitter/follow/avidRaghav?label=Follow&style=social)
+
+[![Contributions Highly Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/avidraghav/MyNotes/issues)
+[![Availble issues to contribute](https://img.shields.io/github/issues/avidRaghav/MyNotes?style=social)](https://github.com/avidraghav/MyNotes/issues)
+
+
+
+
+**MyNotes** is a Demo app which demonstrates the use of **MVVM architecture, Dependency Injection, Navigation Component Library, Room Database, LiveData, Coroutines, Datastore** and other **Modern Android Development**. 
 
 # :movie_camera: Working Demo
 <img src="https://user-images.githubusercontent.com/49483235/158948517-970c6250-51b6-43a1-85ac-563090295f1b.gif" width="400" height="600">
