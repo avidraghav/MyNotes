@@ -1,5 +1,5 @@
 # :pencil: MyNotes
-![Build](https://github.com/avidraghav/MyNotes/actions/workflows/android.yaml/badge.svg)
+![Build](https://github.com/avidraghav/MyNotes/actions/workflows/android.yaml/badge.svg?branch=main)
 [![GitHub license](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 ![GitHub stars](https://img.shields.io/github/stars/avidraghav/MyNotes?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/avidraghav/MyNotes?style=social)
