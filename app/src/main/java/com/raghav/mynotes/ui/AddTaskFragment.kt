@@ -5,7 +5,9 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.raghav.mynotes.R
@@ -14,6 +16,7 @@ import com.raghav.mynotes.models.TaskEntity
 import com.raghav.mynotes.ui.base.BaseFragment
 import com.raghav.mynotes.utils.SnackBarUtils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
@@ -27,6 +30,14 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                val deadline = viewModel.fetchDeadline()
+                if (deadline != null)
+                    binding.deadline.text = deadline.toString()
+            }
+        }
 
         if (args.task != null) {
             val task = args.task
@@ -66,6 +77,7 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
     private fun showDatePicker() {
         val datePickerFragment = DatePickerFragment { deadLine ->
             binding.deadline.text = deadLine
+            viewModel.setDeadline(deadLine)
         }
         datePickerFragment.show(childFragmentManager, "datePicker")
     }
@@ -93,8 +105,8 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
     }
 
     private fun saveTask(task: TaskEntity) {
+        showProgressBar()
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            showProgressBar()
             viewModel.saveTask(task)
             hideProgressBar()
         }

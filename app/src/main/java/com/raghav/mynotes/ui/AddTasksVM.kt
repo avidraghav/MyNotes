@@ -15,9 +15,19 @@ class AddTasksVM @Inject constructor(
     private val dispatchers: DispatchersProvider,
 ) : ViewModel() {
 
+    private var _deadline: String? = null
+    val deadline: String?
+        get() = _deadline
+
     suspend fun saveTask(task: TaskEntity) {
         viewModelScope.launch(dispatchers.main) {
             repository.saveTask(task)
         }
+    }
+
+    fun fetchDeadline() = deadline
+
+    fun setDeadline(date: String) {
+        _deadline = date
     }
 }
