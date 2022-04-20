@@ -39,7 +39,6 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-
                 // fetch previous state of Sort By Deadline Checkbox
                 val isSorted = datastore.isTasksSorted.firstOrNull() ?: false
                 // update it's current state accordingly
@@ -98,7 +97,6 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                 viewModel.getTasks(true)
                 // Save checkbox state in Datastore
                 saveSortCheckBoxState(true)
-
             } else {
                 viewModel.getTasks()
                 // Save checkbox state in Datastore

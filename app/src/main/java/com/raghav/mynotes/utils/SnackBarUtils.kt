@@ -21,5 +21,4 @@ object SnackBarUtils {
             snackBar.anchorView = anchorView
         snackBar.setBackgroundTint(ContextCompat.getColor(this, R.color.teal_200)).show()
     }
-
 }

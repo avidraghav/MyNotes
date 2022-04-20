@@ -23,7 +23,6 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
 
     private val args: AddTaskFragmentArgs by navArgs()
     private var key: Int? = null
-
     private val viewModel by viewModels<AddTasksVM>()
 
     override fun getViewBinding() = FragmentAddTaskBinding.inflate(layoutInflater)
@@ -55,7 +54,6 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
             val title = binding.etTaskTitle.text.toString()
             val description = binding.description.text.toString()
             val deadLine = binding.deadline.text.toString()
-
             val isInputValid = validateInput(title, description, deadLine)
 
             if (isInputValid.first) {
