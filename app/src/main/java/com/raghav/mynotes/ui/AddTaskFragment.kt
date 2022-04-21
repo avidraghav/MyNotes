@@ -75,7 +75,6 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
         datePickerFragment.show(childFragmentManager, "datePicker")
     }
 
-    // function for validating input, can be extended in future
     private fun validateInput(
         title: String,
         description: String,

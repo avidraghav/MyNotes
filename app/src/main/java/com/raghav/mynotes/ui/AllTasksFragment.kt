@@ -35,9 +35,7 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
         setUpRecyclerView()
 
         executeInCoroutine {
-            // fetch previous state of Sort By Deadline Checkbox
             val isSorted = datastore.isTasksSorted.firstOrNull() ?: false
-            // update it's current state accordingly
             binding.checkboxSort.isChecked = isSorted
 
             viewModel.getTasks(isSorted)
@@ -52,7 +50,6 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                             binding.rvTasks.adapter = TasksAdapter(emptyList())
                             binding.checkboxSort.isChecked = false
                             enableSortCheckBox(false)
-                            // Save checkbox state in Datastore
                             saveSortCheckBoxState(false)
                         } else {
                             binding.rvTasks.adapter = data.data?.let {
@@ -90,11 +87,9 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
             val isChecked = binding.checkboxSort.isChecked
             if (isChecked) {
                 viewModel.getTasks(true)
-                // Save checkbox state in Datastore
                 saveSortCheckBoxState(true)
             } else {
                 viewModel.getTasks()
-                // Save checkbox state in Datastore
                 saveSortCheckBoxState(false)
             }
         }
