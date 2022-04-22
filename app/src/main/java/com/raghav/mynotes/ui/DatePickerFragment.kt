@@ -14,13 +14,11 @@ import java.util.*
  */
 class DatePickerFragment(private val deadLineListener: (String) -> Unit) : DialogFragment(),
     DatePickerDialog.OnDateSetListener {
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val calendar = Calendar.getInstance()
         val year = calendar[Calendar.YEAR]
         val month = calendar[Calendar.MONTH]
         val day = calendar[Calendar.DAY_OF_MONTH]
-
         val datePickerDialog = DatePickerDialog(requireContext(), this, year, month, day)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000

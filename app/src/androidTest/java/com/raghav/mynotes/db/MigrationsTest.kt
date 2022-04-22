@@ -41,7 +41,6 @@ class MigrationsTest {
 //    fun migrate1to2(){
 //
 //    }
-
     /**
      * Test to check error free migration of Room Database from Version 2 to 3
      * */
@@ -57,7 +56,6 @@ class MigrationsTest {
         }
         // re-opening the database with version 3 and providing MIGRATION_2_3
         helper.runMigrationsAndValidate(testDb, 3, true, MIGRATION_2_3)
-
         // getting the instance of database with the exported data from version 2
         val tasksDb: TasksDatabase = MigrationUtil.getDatabaseAfterMigrations(
             helper,
@@ -65,7 +63,6 @@ class MigrationsTest {
             testDb,
             MIGRATION_2_3
         ) as TasksDatabase
-
         //checking for data integrity
         val dao = tasksDb.dao()
         val tasks = dao.getTasks().first()

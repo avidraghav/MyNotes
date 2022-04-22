@@ -35,9 +35,7 @@ class TasksDaoTest {
     fun closeDb() {
         db.close()
     }
-
     // Naming convention for test cases used is 'subjectUnderTest_actionOrInput_resultState'
-
     @Test
     fun saveTask_taskProvided_TaskSaved() = runBlocking {
         val aTask = TaskEntity(1, "test", "test", "Friday, 29 April 2022")
@@ -77,7 +75,6 @@ class TasksDaoTest {
         dao.saveTask(bTask)
         dao.saveTask(cTask)
         dao.deleteTask(bTask)
-
         val job = launch {
             dao.getTasks().test {
                 tasks = awaitItem()
@@ -98,7 +95,6 @@ class TasksDaoTest {
 
         dao.saveTask(aTask)
         dao.deleteTask(aTask)
-
         val job = launch {
             dao.getTasks().test {
                 tasks = awaitItem()
@@ -128,5 +124,4 @@ class TasksDaoTest {
         job.join()
         job.cancel()
     }
-
 }

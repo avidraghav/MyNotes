@@ -5,13 +5,13 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.raghav.mynotes.R
 import com.raghav.mynotes.databinding.FragmentAddTaskBinding
 import com.raghav.mynotes.models.TaskEntity
 import com.raghav.mynotes.ui.base.BaseFragment
+import com.raghav.mynotes.utils.CoroutineUtils.executeInCoroutine
 import com.raghav.mynotes.utils.SnackBarUtils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,13 +20,18 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
 
     private val args: AddTaskFragmentArgs by navArgs()
     private var key: Int? = null
-
     private val viewModel by viewModels<AddTasksVM>()
 
     override fun getViewBinding() = FragmentAddTaskBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        executeInCoroutine {
+            val deadline = viewModel.fetchDeadline()
+            if (deadline != null)
+                binding.deadline.text = deadline.toString()
+        }
 
         if (args.task != null) {
             val task = args.task
@@ -44,7 +49,6 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
             val title = binding.etTaskTitle.text.toString()
             val description = binding.description.text.toString()
             val deadLine = binding.deadline.text.toString()
-
             val isInputValid = validateInput(title, description, deadLine)
 
             if (isInputValid.first) {
@@ -66,11 +70,11 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
     private fun showDatePicker() {
         val datePickerFragment = DatePickerFragment { deadLine ->
             binding.deadline.text = deadLine
+            viewModel.setDeadline(deadLine)
         }
         datePickerFragment.show(childFragmentManager, "datePicker")
     }
 
-    // function for validating input, can be extended in future
     private fun validateInput(
         title: String,
         description: String,
@@ -93,8 +97,8 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
     }
 
     private fun saveTask(task: TaskEntity) {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            showProgressBar()
+        showProgressBar()
+        executeInCoroutine {
             viewModel.saveTask(task)
             hideProgressBar()
         }

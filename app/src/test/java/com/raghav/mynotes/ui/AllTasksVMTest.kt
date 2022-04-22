@@ -21,27 +21,24 @@ import org.mockito.junit.MockitoJUnitRunner
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class AllTasksVMTest {
+
     /**
      * makes sure that all the background tasks related to
      * architectural components happen in the same thread important if observing live data
      */
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
-
     private lateinit var allTasksVM: AllTasksVM
 
     @Mock
     private lateinit var mockRepository: TasksRepositoryImpl
-
     private val dispatchers = TestDispatchers()
-
     private val tasksList: List<TaskEntity> = listOf(
         TaskEntity(
             id = 0,
             title = "task1",
             description = "des1",
             deadLine = "Saturday, 30 April 2022"
-
         ),
         TaskEntity(
             id = 1,
@@ -62,7 +59,6 @@ class AllTasksVMTest {
 
         `when`(mockRepository.getAllTasks()).thenReturn(testFlow)
         allTasksVM.getTasks()
-
         val value = allTasksVM.tasks.getOrAwaitValueTest()
 
         assertThat(value.data).isEqualTo(Resource.Success(tasksList).data)
@@ -74,7 +70,6 @@ class AllTasksVMTest {
 
         `when`(mockRepository.getAllTasks()).thenReturn(testFlow)
         allTasksVM.getTasks(true)
-
         val value = allTasksVM.tasks.getOrAwaitValueTest()
 
         assertThat(value.data).isEqualTo(Resource.Success(tasksList).data?.reversed())

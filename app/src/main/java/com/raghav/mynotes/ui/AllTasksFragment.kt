@@ -5,9 +5,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raghav.mynotes.R
@@ -16,11 +13,11 @@ import com.raghav.mynotes.databinding.FragmentAllTasksBinding
 import com.raghav.mynotes.prefstore.TaskDatastore
 import com.raghav.mynotes.prefstore.TaskDatastoreImpl
 import com.raghav.mynotes.ui.base.BaseFragment
+import com.raghav.mynotes.utils.CoroutineUtils.executeInCoroutine
 import com.raghav.mynotes.utils.Resource
 import com.raghav.mynotes.utils.SnackBarUtils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,52 +34,46 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        executeInCoroutine {
+            val isSorted = datastore.isTasksSorted.firstOrNull() ?: false
+            binding.checkboxSort.isChecked = isSorted
 
-                // fetch previous state of Sort By Deadline Checkbox
-                val isSorted = datastore.isTasksSorted.firstOrNull() ?: false
-                // update it's current state accordingly
-                binding.checkboxSort.isChecked = isSorted
+            viewModel.getTasks(isSorted)
 
-                viewModel.getTasks(isSorted)
-
-                viewModel.tasks.observe(viewLifecycleOwner) { data ->
-                    when (data) {
-                        is Resource.Loading -> showProgressBar()
-                        is Resource.Success -> {
-                            hideProgressBar()
-                            if (data.data?.isEmpty() == true) {
-                                binding.tvNoTasks.visibility = VISIBLE
-                                binding.rvTasks.adapter = TasksAdapter(emptyList())
-                                binding.checkboxSort.isChecked = false
-                                enableSortCheckBox(false)
-                                // Save checkbox state in Datastore
-                                saveSortCheckBoxState(false)
-                            } else {
-                                binding.rvTasks.adapter = data.data?.let {
-                                    TasksAdapter(it) { taskItemBinding, item ->
-                                        taskItemBinding.ivDelete.setOnClickListener {
-                                            viewModel.deleteTask(item)
-                                            requireContext().showSnackBar(
-                                                rootView = binding.root,
-                                                message = "Deleted",
-                                                anchorView = binding.btnAddTasks,
-                                            )
-                                        }
+            viewModel.tasks.observe(viewLifecycleOwner) { data ->
+                when (data) {
+                    is Resource.Loading -> showProgressBar()
+                    is Resource.Success -> {
+                        hideProgressBar()
+                        if (data.data?.isEmpty() == true) {
+                            binding.tvNoTasks.visibility = VISIBLE
+                            binding.rvTasks.adapter = TasksAdapter(emptyList())
+                            binding.checkboxSort.isChecked = false
+                            enableSortCheckBox(false)
+                            saveSortCheckBoxState(false)
+                        } else {
+                            binding.rvTasks.adapter = data.data?.let {
+                                TasksAdapter(it) { taskItemBinding, item ->
+                                    taskItemBinding.ivDelete.setOnClickListener {
+                                        viewModel.deleteTask(item)
+                                        requireContext().showSnackBar(
+                                            rootView = binding.root,
+                                            message = "Deleted",
+                                            anchorView = binding.btnAddTasks,
+                                        )
                                     }
                                 }
-                                enableSortCheckBox(true)
                             }
+                            enableSortCheckBox(true)
                         }
-                        is Resource.Error -> {
-                            hideProgressBar()
-                            requireContext().showSnackBar(
-                                rootView = binding.root,
-                                message = data.message.toString(),
-                                anchorView = binding.btnAddTasks,
-                            )
-                        }
+                    }
+                    is Resource.Error -> {
+                        hideProgressBar()
+                        requireContext().showSnackBar(
+                            rootView = binding.root,
+                            message = data.message.toString(),
+                            anchorView = binding.btnAddTasks,
+                        )
                     }
                 }
             }
@@ -96,12 +87,9 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
             val isChecked = binding.checkboxSort.isChecked
             if (isChecked) {
                 viewModel.getTasks(true)
-                // Save checkbox state in Datastore
                 saveSortCheckBoxState(true)
-
             } else {
                 viewModel.getTasks()
-                // Save checkbox state in Datastore
                 saveSortCheckBoxState(false)
             }
         }
@@ -120,13 +108,11 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
     }
 
     private fun saveSortCheckBoxState(isChecked: Boolean) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                datastore.setValue(
-                    TaskDatastoreImpl.IS_SORTED_KEY,
-                    isChecked
-                )
-            }
+        executeInCoroutine {
+            datastore.setValue(
+                TaskDatastoreImpl.IS_SORTED_KEY,
+                isChecked
+            )
         }
     }
 

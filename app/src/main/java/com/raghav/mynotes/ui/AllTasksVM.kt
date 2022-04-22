@@ -46,5 +46,4 @@ class AllTasksVM @Inject constructor(
             it.deadLine.toTime()
         }
     }
-
 }
