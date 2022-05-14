@@ -3,7 +3,7 @@ package com.raghav.mynotes.ui
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import com.raghav.mynotes.models.TaskEntity
-import com.raghav.mynotes.repository.TasksRepositoryImpl
+import com.raghav.mynotes.repository.TasksRepository
 import com.raghav.mynotes.utils.Resource
 import com.raghav.mynotes.utils.TestDispatchers
 import getOrAwaitValueTest
@@ -31,7 +31,7 @@ class AllTasksVMTest {
     private lateinit var allTasksVM: AllTasksVM
 
     @Mock
-    private lateinit var mockRepository: TasksRepositoryImpl
+    private lateinit var mockRepository: TasksRepository
     private val dispatchers = TestDispatchers()
     private val tasksList: List<TaskEntity> = listOf(
         TaskEntity(
