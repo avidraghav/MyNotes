@@ -22,15 +22,17 @@ class AllTasksVM @Inject constructor(
 
     private val _tasks = MutableLiveData<Resource<List<TaskEntity>>>()
     val tasks: LiveData<Resource<List<TaskEntity>>> = _tasks
+    private val _checkBoxState = MutableLiveData<Boolean>()
+    val checkBoxState: LiveData<Boolean> = _checkBoxState
 
     fun getTasks(sort: Boolean = false) {
         viewModelScope.launch(dispatchers.main) {
             _tasks.postValue(Resource.Loading())
             repository.getAllTasks().collect {
                 if (sort)
-                    _tasks.postValue(Resource.Success(sortTasks(it)))
+                    _tasks.value = Resource.Success(sortTasks(it))
                 else
-                    _tasks.postValue(Resource.Success(it))
+                    _tasks.value = Resource.Success(it)
             }
         }
     }
@@ -44,6 +46,18 @@ class AllTasksVM @Inject constructor(
     private fun sortTasks(tasks: List<TaskEntity>): List<TaskEntity> {
         return tasks.sortedBy {
             it.deadLine.toTime()
+        }
+    }
+
+    fun saveSortCheckBoxState(isChecked: Boolean) {
+        viewModelScope.launch {
+            repository.saveSortCheckBoxState(isChecked)
+        }
+    }
+
+    fun getSortCheckBoxState() {
+        viewModelScope.launch {
+            _checkBoxState.value = repository.getSortCheckBoxState()
         }
     }
 }

@@ -39,8 +39,8 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideTaskRepository(dao: TasksDao): TasksRepository {
-        return TasksRepositoryImpl(dao)
+    fun provideTaskRepository(dao: TasksDao, datastore: TaskDatastore): TasksRepository {
+        return TasksRepositoryImpl(dao, datastore)
     }
 
     @Singleton
