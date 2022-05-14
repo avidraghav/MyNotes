@@ -53,6 +53,10 @@ class AllTasksVMTest {
         allTasksVM = AllTasksVM(mockRepository, dispatchers)
     }
 
+    /**
+     * Test cases follow naming convention:
+     * unitUnderTest_inputProvidedToUnit_resultExpected
+     * */
     @Test
     fun getTasks_notSortedByDeadline_returnsUnSortedTasksList() = runBlocking {
         val testFlow = flow { emit(tasksList) }
