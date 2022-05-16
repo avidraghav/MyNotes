@@ -18,14 +18,15 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 class TaskDatastoreImpl @Inject constructor(context: Context) : TaskDatastore {
 
     private val datastore = context.dataStore
-
     override val isTasksSorted = datastore.data.catch { exception ->
         if (exception is IOException) {
             emit(emptyPreferences())
         } else {
             throw exception
         }
-    }.map { it[IS_SORTED_KEY] ?: false }
+    }.map {
+        it[IS_SORTED_KEY] ?: false
+    }
 
     override suspend fun <T> setValue(key: Preferences.Key<T>, value: T) {
         datastore.edit { preferences ->
@@ -34,6 +35,7 @@ class TaskDatastoreImpl @Inject constructor(context: Context) : TaskDatastore {
     }
 
     companion object {
+
         val IS_SORTED_KEY = booleanPreferencesKey("is_sorted")
     }
 }

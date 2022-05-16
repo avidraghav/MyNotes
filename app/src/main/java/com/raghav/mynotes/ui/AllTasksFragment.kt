@@ -10,23 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.raghav.mynotes.R
 import com.raghav.mynotes.adapter.TasksAdapter
 import com.raghav.mynotes.databinding.FragmentAllTasksBinding
-import com.raghav.mynotes.prefstore.TaskDatastore
-import com.raghav.mynotes.prefstore.TaskDatastoreImpl
 import com.raghav.mynotes.ui.base.BaseFragment
 import com.raghav.mynotes.utils.CoroutineUtils.executeInCoroutine
 import com.raghav.mynotes.utils.Resource
 import com.raghav.mynotes.utils.SnackBarUtils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.firstOrNull
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
 
     private val viewModel by viewModels<AllTasksVM>()
-
-    @Inject
-    lateinit var datastore: TaskDatastore
 
     override fun getViewBinding() = FragmentAllTasksBinding.inflate(layoutInflater)
 
@@ -35,10 +28,12 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
         setUpRecyclerView()
 
         executeInCoroutine {
-            val isSorted = datastore.isTasksSorted.firstOrNull() ?: false
-            binding.checkboxSort.isChecked = isSorted
+            viewModel.getSortCheckBoxState()
 
-            viewModel.getTasks(isSorted)
+            viewModel.checkBoxState.observe(viewLifecycleOwner) { isChecked ->
+                binding.checkboxSort.isChecked = isChecked
+                viewModel.getTasks(isChecked)
+            }
 
             viewModel.tasks.observe(viewLifecycleOwner) { data ->
                 when (data) {
@@ -108,12 +103,7 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
     }
 
     private fun saveSortCheckBoxState(isChecked: Boolean) {
-        executeInCoroutine {
-            datastore.setValue(
-                TaskDatastoreImpl.IS_SORTED_KEY,
-                isChecked
-            )
-        }
+        viewModel.saveSortCheckBoxState(isChecked)
     }
 
     private fun enableSortCheckBox(isEnabled: Boolean) {
