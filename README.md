@@ -42,7 +42,7 @@ I highly recommend to start with Manual Dependency injection method and then mov
 # :white_check_mark: Tests
 - For an example of Room Database Schema Migration see branch [***`room-migration-testing`***](https://github.com/avidraghav/MyNotes/tree/room-migration-testing)
 - For Implementing Instrumented Test Cases for Room Database see branch [***`testing`***](https://github.com/avidraghav/MyNotes/tree/testing)
-- For Implementing Unit Test Cases for ViewModels see branch [***`tests-for-viewmodel`***](https://github.com/avidraghav/MyNotes/tree/Tests-For-ViewModel)
+- For Implementing Unit Tests for ViewModel and Repository by using the latest testing apis (as of August 2022) see branch [***`testing-coroutines-  1.6.1`***](https://github.com/avidraghav/MyNotes/tree/testing-coroutines-1.6.1)
 
 # 🏗️ Architecture Design
 
