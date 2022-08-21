@@ -50,14 +50,18 @@ class AllTasksVM @Inject constructor(
     }
 
     fun saveSortCheckBoxState(isChecked: Boolean) {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchers.main) {
             repository.saveSortCheckBoxState(isChecked)
         }
     }
 
     fun getSortCheckBoxState() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatchers.main) {
             _checkBoxState.value = repository.getSortCheckBoxState()
         }
+    }
+
+    fun clear() {
+        this.onCleared()
     }
 }

@@ -3,23 +3,18 @@ package com.raghav.mynotes.ui
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import com.raghav.mynotes.models.TaskEntity
-import com.raghav.mynotes.repository.TasksRepository
-import com.raghav.mynotes.utils.Resource
+import com.raghav.mynotes.utils.FakeTaskRepositoryImpl
 import com.raghav.mynotes.utils.TestDispatchers
 import getOrAwaitValueTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
-@RunWith(MockitoJUnitRunner::class)
 class AllTasksVMTest {
 
     /**
@@ -29,11 +24,9 @@ class AllTasksVMTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
     private lateinit var allTasksVM: AllTasksVM
-
-    @Mock
-    private lateinit var mockRepository: TasksRepository
+    private val fakeTaskRepositoryImpl = FakeTaskRepositoryImpl()
     private val dispatchers = TestDispatchers()
-    private val tasksList: List<TaskEntity> = listOf(
+    private val tasksList = mutableListOf(
         TaskEntity(
             id = 0,
             title = "task1",
@@ -45,12 +38,18 @@ class AllTasksVMTest {
             title = "task2",
             description = "des2",
             deadLine = "Friday, 29 April 2022"
-        ),
+        )
     )
+    private val sampleTask = tasksList[0]
 
     @Before
-    fun setUp() {
-        allTasksVM = AllTasksVM(mockRepository, dispatchers)
+    fun setupViewModel() {
+        allTasksVM = AllTasksVM(fakeTaskRepositoryImpl, dispatchers)
+    }
+
+    @After
+    fun clearViewModel() {
+        allTasksVM.clear()
     }
 
     /**
@@ -58,25 +57,41 @@ class AllTasksVMTest {
      * unitUnderTest_inputProvidedToUnit_resultExpected
      * */
     @Test
-    fun getTasks_notSortedByDeadline_returnsUnSortedTasksList() = runBlocking {
-        val testFlow = flow { emit(tasksList) }
+    fun getTasks_notSortedByDeadline_returnsUnSortedTasksList() =
+        runTest(UnconfinedTestDispatcher()) {
+            allTasksVM.getTasks(false)
+            val receivedList = allTasksVM.tasks.getOrAwaitValueTest().data
+            assertThat(receivedList).isEqualTo(tasksList)
+        }
 
-        `when`(mockRepository.getAllTasks()).thenReturn(testFlow)
-        allTasksVM.getTasks()
-        val value = allTasksVM.tasks.getOrAwaitValueTest()
-
-        assertThat(value.data).isEqualTo(Resource.Success(tasksList).data)
+    @Test
+    fun getTasks_sortedByDeadline_returnsSortedTasksList() = runTest(UnconfinedTestDispatcher()) {
+        allTasksVM.getTasks(true)
+        val receivedList = allTasksVM.tasks.getOrAwaitValueTest().data
+        assertThat(receivedList).isEqualTo(tasksList.reversed())
     }
 
     @Test
-    fun getTasks_sortedByDeadline_returnsSortedTasksList() = runBlocking {
-        val testFlow = flow { emit(tasksList) }
+    fun deleteTask_task_taskDeleted() = runTest(UnconfinedTestDispatcher()) {
+        allTasksVM.deleteTask(sampleTask)
+        allTasksVM.getTasks()
+        val receivedList = allTasksVM.tasks.getOrAwaitValueTest().data
+        assertThat(receivedList).doesNotContain(sampleTask)
+    }
 
-        `when`(mockRepository.getAllTasks()).thenReturn(testFlow)
-        allTasksVM.getTasks(true)
-        val value = allTasksVM.tasks.getOrAwaitValueTest()
+    @Test
+    fun getSortCheckBoxState_returnsFalseIfNull() = runTest(UnconfinedTestDispatcher()) {
+        allTasksVM.getSortCheckBoxState()
+        val state = allTasksVM.checkBoxState.getOrAwaitValueTest()
+        assertThat(state).isFalse()
+    }
 
-        assertThat(value.data).isEqualTo(Resource.Success(tasksList).data?.reversed())
+    @Test
+    fun saveSortCheckBoxState_true_stateSaved() = runTest(UnconfinedTestDispatcher()) {
+        allTasksVM.saveSortCheckBoxState(true)
+        allTasksVM.getSortCheckBoxState()
+        val state = allTasksVM.checkBoxState.getOrAwaitValueTest()
+        assertThat(state).isTrue()
     }
 }
 
