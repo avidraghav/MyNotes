@@ -18,10 +18,6 @@ class AddTasksVM @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private var _deadline: String? = null
-    val deadline: String?
-        get() = _deadline
-
     suspend fun saveTask(task: TaskEntity) {
         viewModelScope.launch(dispatchers.main) {
             repository.saveTask(task)
