@@ -5,6 +5,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/avidraghav/MyNotes?style=social)
 ![Twitter Follow](https://img.shields.io/twitter/follow/avidRaghav?label=Follow&style=social)
 
+[![Hactoberfest 2022](https://img.shields.io/badge/-HACKTOBERFEST--ACCEPTED-brightgreen)](https://hacktoberfest.com/participation/)
 [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23515-blue)](https://androidweekly.net/issues/issue-515)
 [![Contributions Highly Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/avidraghav/MyNotes/issues)
 [![Availble issues to contribute](https://img.shields.io/github/issues/avidRaghav/MyNotes?style=social)](https://github.com/avidraghav/MyNotes/issues)
