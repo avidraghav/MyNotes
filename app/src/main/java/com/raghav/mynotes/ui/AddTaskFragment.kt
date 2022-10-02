@@ -45,6 +45,10 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
             showDatePicker()
         }
 
+        binding.myToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         binding.btnSaveTask.setOnClickListener {
             val title = binding.etTaskTitle.text.toString()
             val description = binding.description.text.toString()
