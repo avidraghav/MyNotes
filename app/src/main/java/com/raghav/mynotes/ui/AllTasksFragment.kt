@@ -2,14 +2,14 @@ package com.raghav.mynotes.ui
 
 import android.os.Bundle
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raghav.mynotes.R
 import com.raghav.mynotes.adapter.TasksAdapter
 import com.raghav.mynotes.databinding.FragmentAllTasksBinding
+import com.raghav.mynotes.models.TaskEntity
 import com.raghav.mynotes.ui.base.BaseFragment
 import com.raghav.mynotes.utils.CoroutineUtils.executeInCoroutine
 import com.raghav.mynotes.utils.Resource
@@ -20,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
 
     private val viewModel by viewModels<AllTasksVM>()
+    private val addTasksVM by viewModels<AddTasksVM>()
 
     override fun getViewBinding() = FragmentAllTasksBinding.inflate(layoutInflater)
 
@@ -47,6 +48,7 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                             enableSortCheckBox(false)
                             saveSortCheckBoxState(false)
                         } else {
+                            binding.tvNoTasks.visibility = INVISIBLE
                             binding.rvTasks.adapter = data.data?.let {
                                 TasksAdapter(it) { taskItemBinding, item ->
                                     taskItemBinding.ivDelete.setOnClickListener {
@@ -55,6 +57,8 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                                             rootView = binding.root,
                                             message = "Deleted",
                                             anchorView = binding.btnAddTasks,
+                                            actionText = "Undo",
+                                            onAction = { undoDelete(item) }
                                         )
                                     }
                                 }
@@ -108,5 +112,11 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
 
     private fun enableSortCheckBox(isEnabled: Boolean) {
         binding.checkboxSort.isEnabled = isEnabled
+    }
+
+    private fun undoDelete(task: TaskEntity) {
+        executeInCoroutine {
+            addTasksVM.saveTask(task)
+        }
     }
 }
