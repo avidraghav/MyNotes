@@ -63,6 +63,12 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                                     }
                                 }
                             }
+                            //for return animation
+                            postponeEnterTransition()
+                            view.viewTreeObserver.addOnPreDrawListener {
+                                startPostponedEnterTransition()
+                                true
+                            }
                             enableSortCheckBox(true)
                         }
                     }
