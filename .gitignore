@@ -14,3 +14,5 @@
 .cxx
 local.properties
 /.idea/codeStyles
+/.idea/gradle.xml
+/.idea/misc.xml
