@@ -9,6 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.MyApp.ActionBar"
+            app:layout_constraintBottom_toTopOf="@id/rv_tasks"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="All Tasks" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_tasks"
             android:layout_width="0dp"
@@ -16,7 +30,7 @@
             app:layout_constraintBottom_toTopOf="@id/constraint_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/my_toolbar"
             tools:listitem="@layout/item_task" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
