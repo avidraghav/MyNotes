@@ -21,5 +21,6 @@
     <color name="background">@color/white</color>
     <color name="action_bar">@color/dark</color>
     <color name="status_bar">@color/dark</color>
+    <color name="snack_bar">@color/dark</color>
 
 </resources>
