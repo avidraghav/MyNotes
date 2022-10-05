@@ -24,21 +24,10 @@ class TasksAdapter(
     }
 
     override fun onBindViewHolder(holder: TasksViewHolder, position: Int) {
-        holder.bind(createOnClickListener(holder.binding,tasks[position]),tasks[position])
+        holder.bind(createOnClickListener(holder.binding, tasks[position]), tasks[position])
     }
 
     override fun getItemCount() = tasks.size
-
-    private fun createOnClickListener(binding : ItemTaskBinding, task: TaskEntity): View.OnClickListener {
-        return View.OnClickListener {
-            val directions = AllTasksFragmentDirections.actionAllTasksFragmentToAddTaskFragment(task)
-            val extras = FragmentNavigatorExtras(
-                binding.tvTitle to "title_${task.id}",
-                binding.tvDescription to "description_${task.id}",
-                binding.tvDeadline to "deadline_${task.id}")
-            it.findNavController().navigate(directions, extras)
-        }
-    }
 
     inner class TasksViewHolder(val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -58,4 +47,19 @@ class TasksAdapter(
         }
     }
 
+    private fun createOnClickListener(
+        binding: ItemTaskBinding,
+        task: TaskEntity
+    ): View.OnClickListener {
+        return View.OnClickListener {
+            val directions =
+                AllTasksFragmentDirections.actionAllTasksFragmentToAddTaskFragment(task)
+            val extras = FragmentNavigatorExtras(
+                binding.tvTitle to "title_${task.id}",
+                binding.tvDescription to "description_${task.id}",
+                binding.tvDeadline to "deadline_${task.id}"
+            )
+            it.findNavController().navigate(directions, extras)
+        }
+    }
 }

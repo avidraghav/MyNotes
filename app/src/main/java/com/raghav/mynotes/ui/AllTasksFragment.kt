@@ -65,9 +65,12 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                                     }
                                 }
                             }
-                            val controller = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_right_to_left)
-                            binding.rvTasks.layoutAnimation = controller
-                            binding.rvTasks.scheduleLayoutAnimation()
+                            if (MainActivity.isAnimatedRecyclerView){
+                                val controller = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_fall_down)
+                                binding.rvTasks.layoutAnimation = controller
+                                binding.rvTasks.scheduleLayoutAnimation()
+                                MainActivity.isAnimatedRecyclerView = false
+                            }
                             //for return animation
                             postponeEnterTransition()
                             view.viewTreeObserver.addOnPreDrawListener {
