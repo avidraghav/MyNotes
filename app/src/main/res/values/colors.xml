@@ -7,4 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark">#181c27</color>
+    <color name="blue">#3369ff</color>
+    <color name="gray">#babecc</color>
+
+    <color name="primary">@color/dark</color>
+    <color name="secondary">@color/blue</color>
+
+    <color name="text_color">@color/dark</color>
+    <color name="fab_bg">@color/blue</color>
+    <color name="fab_icon_tint">@color/white</color>
+    <color name="progress_bar_tint">@color/dark</color>
+    <color name="background">@color/white</color>
+    <color name="action_bar">@color/dark</color>
+    <color name="status_bar">@color/dark</color>
+
 </resources>

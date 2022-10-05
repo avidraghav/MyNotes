@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background"
     android:padding="8dp">
 
     <com.google.android.material.textview.MaterialTextView
@@ -14,8 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="24sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:textColor="@color/text_color"
         tools:text="Title"
         android:layout_marginTop="8dp" />
 
@@ -28,7 +29,8 @@
         android:layout_marginTop="8dp"
         android:textSize="16sp"
         tools:text="Description"
-        android:textColor="@color/purple_200"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/text_color"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -36,6 +38,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Sunday, 22 February, 2021"

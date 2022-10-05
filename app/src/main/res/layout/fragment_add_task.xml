@@ -17,7 +17,7 @@
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.MyApp.ActionBar"
-            app:layout_constraintBottom_toTopOf="@id/et_task_title"
+            app:layout_constraintBottom_toTopOf="@id/et_title_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,28 +25,48 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:title="Add Task" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_task_title"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_title_container"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Title"
-            android:textStyle="bold"
+            android:layout_margin="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/my_toolbar"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintTop_toBottomOf="@id/my_toolbar">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/description"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_task_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:hint="Title"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_desc_container"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="16dp"
-            android:gravity="start"
-            android:hint="Description"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_task_title"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintTop_toBottomOf="@id/et_title_container">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="start"
+                android:hint="Description"
+                tools:ignore="HardcodedText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/date"
@@ -55,7 +75,7 @@
             android:layout_marginStart="8dp"
             android:text="select deadline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description"
+            app:layout_constraintTop_toBottomOf="@+id/et_desc_container"
             tools:ignore="HardcodedText" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -64,10 +84,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_regular"
             android:maxLines="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/date"
-            app:layout_constraintTop_toBottomOf="@+id/description"
+            app:layout_constraintTop_toBottomOf="@+id/et_desc_container"
             tools:text="Sunday, 13 February, 2022" />
 
         <ProgressBar
@@ -91,5 +112,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         app:srcCompat="@drawable/ic_baseline_done"
+        app:tint="@color/fab_icon_tint"
         tools:ignore="ContentDescription" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

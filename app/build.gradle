@@ -68,6 +68,9 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.6.0"
     implementation "androidx.fragment:fragment-ktx:1.5.3"
 
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
     //Room
     implementation "androidx.room:room-runtime:2.4.3"
     kapt "androidx.room:room-compiler:2.4.3"
