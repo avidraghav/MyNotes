@@ -3,6 +3,7 @@ package com.raghav.mynotes.ui
 import android.os.Bundle
 import android.view.View
 import android.view.View.*
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,6 +52,7 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                         } else {
                             binding.animNoTask.visibility = INVISIBLE
                             binding.tvNoTasks.visibility = INVISIBLE
+                            binding.rvTasks.layoutManager = LinearLayoutManager(context)
                             binding.rvTasks.adapter = data.data?.let {
                                 TasksAdapter(it) { taskItemBinding, item ->
                                     taskItemBinding.ivDelete.setOnClickListener {
@@ -64,6 +66,18 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                                         )
                                     }
                                 }
+                            }
+                            if (MainActivity.isAnimatedRecyclerView){
+                                val controller = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_fall_down)
+                                binding.rvTasks.layoutAnimation = controller
+                                binding.rvTasks.scheduleLayoutAnimation()
+                                MainActivity.isAnimatedRecyclerView = false
+                            }
+                            //for return animation
+                            postponeEnterTransition()
+                            view.viewTreeObserver.addOnPreDrawListener {
+                                startPostponedEnterTransition()
+                                true
                             }
                             enableSortCheckBox(true)
                         }

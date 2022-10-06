@@ -1,9 +1,11 @@
 package com.raghav.mynotes.ui
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -24,6 +26,14 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
 
     override fun getViewBinding() = FragmentAddTaskBinding.inflate(layoutInflater)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (args.task != null) {
+            sharedElementEnterTransition =
+                TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -39,6 +49,10 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
             binding.description.setText(task?.description)
             binding.deadline.text = task?.deadLine
             key = task?.id
+
+            ViewCompat.setTransitionName(binding.etTaskTitle, "title_${key}")
+            ViewCompat.setTransitionName(binding.description, "description_${key}")
+            ViewCompat.setTransitionName(binding.deadline, "deadline_${key}")
         }
 
         binding.date.setOnClickListener {
