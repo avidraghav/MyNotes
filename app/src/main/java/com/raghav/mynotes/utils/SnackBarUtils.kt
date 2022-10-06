@@ -21,7 +21,8 @@ object SnackBarUtils {
         val snackBar = Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT)
         if (anchorView != null)
             snackBar.anchorView = anchorView
-        snackBar.setBackgroundTint(ContextCompat.getColor(this, R.color.teal_200)).show()
+        snackBar.setBackgroundTint(ContextCompat.getColor(this, R.color.snack_bar)).show()
+        snackBar.setTextColor(ContextCompat.getColor(this, R.color.white)).show()
         if (actionText != null && onAction != null) {
             snackBar.setAction(actionText, View.OnClickListener {
                 onAction()

@@ -42,12 +42,14 @@ class AllTasksFragment : BaseFragment<FragmentAllTasksBinding>() {
                     is Resource.Success -> {
                         hideProgressBar()
                         if (data.data?.isEmpty() == true) {
+                            binding.animNoTask.visibility = VISIBLE
                             binding.tvNoTasks.visibility = VISIBLE
                             binding.rvTasks.adapter = TasksAdapter(emptyList())
                             binding.checkboxSort.isChecked = false
                             enableSortCheckBox(false)
                             saveSortCheckBoxState(false)
                         } else {
+                            binding.animNoTask.visibility = INVISIBLE
                             binding.tvNoTasks.visibility = INVISIBLE
                             binding.rvTasks.adapter = data.data?.let {
                                 TasksAdapter(it) { taskItemBinding, item ->
