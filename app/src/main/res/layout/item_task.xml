@@ -78,7 +78,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@drawable/bg_circle"
-            android:foreground="?attr/selectableItemBackground"
             android:padding="8dp"
             android:src="@drawable/ic_baseline_delete"
             app:layout_constraintBottom_toBottomOf="@+id/tv_title"
