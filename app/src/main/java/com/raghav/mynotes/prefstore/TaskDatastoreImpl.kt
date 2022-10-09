@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.raghav.mynotes.utils.Constants.DATASTORE_NAME
+import com.raghav.mynotes.utils.Constants.PREFERENCE_KEY_IS_SORTED
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
@@ -36,6 +37,6 @@ class TaskDatastoreImpl @Inject constructor(context: Context) : TaskDatastore {
 
     companion object {
 
-        val IS_SORTED_KEY = booleanPreferencesKey("is_sorted")
+        val IS_SORTED_KEY = booleanPreferencesKey(PREFERENCE_KEY_IS_SORTED)
     }
 }
