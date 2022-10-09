@@ -1,5 +1,6 @@
 package com.raghav.mynotes.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
@@ -85,9 +86,11 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showDatePicker() {
         val datePickerFragment = DatePickerFragment { deadLine ->
             binding.deadline.text = deadLine
+            binding.date.text = "Change date"
             viewModel.setDeadline(deadLine)
         }
         datePickerFragment.show(childFragmentManager, "datePicker")
@@ -100,15 +103,15 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>() {
     ): Pair<Boolean, String> {
         var message = ""
         if (title.isEmpty()) {
-            message = "Please Enter A Title"
+            message = "Please enter a title"
             return Pair(false, message)
         }
         if (description.isEmpty()) {
-            message = "Please Enter Task Description"
+            message = "Please enter task description"
             return Pair(false, message)
         }
         if (deadline.isEmpty()) {
-            message = "Please Select a Deadline"
+            message = "Please select a deadline"
             return Pair(false, message)
         }
         return Pair(true, message)
