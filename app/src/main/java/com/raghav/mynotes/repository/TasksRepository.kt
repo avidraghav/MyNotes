@@ -7,7 +7,7 @@ interface TasksRepository {
 
     suspend fun saveTask(task: TaskEntity)
 
-    fun getAllTasks(): Flow<List<TaskEntity>>
+    suspend fun getAllTasks(): Flow<List<TaskEntity>>
 
     suspend fun deleteTask(task: TaskEntity)
 

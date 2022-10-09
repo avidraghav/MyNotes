@@ -13,7 +13,7 @@ class TasksRepositoryImpl @Inject constructor(
 ) : TasksRepository {
 
     override suspend fun saveTask(task: TaskEntity) = dao.saveTask(task)
-    override fun getAllTasks() = dao.getTasks()
+    override suspend fun getAllTasks() = dao.getTasks()
     override suspend fun deleteTask(task: TaskEntity) = dao.deleteTask(task)
     override suspend fun saveSortCheckBoxState(checkBoxState: Boolean) = datastore.setValue(
         TaskDatastoreImpl.IS_SORTED_KEY,

@@ -26,7 +26,7 @@ class AllTasksVM @Inject constructor(
     val checkBoxState: LiveData<Boolean> = _checkBoxState
 
     fun getTasks(sort: Boolean = false) {
-        viewModelScope.launch(dispatchers.main) {
+        viewModelScope.launch(dispatchers.io) {
             _tasks.postValue(Resource.Loading())
             repository.getAllTasks().collect {
                 if (sort)
@@ -38,7 +38,7 @@ class AllTasksVM @Inject constructor(
     }
 
     fun deleteTask(task: TaskEntity) {
-        viewModelScope.launch(dispatchers.main) {
+        viewModelScope.launch(dispatchers.io) {
             repository.deleteTask(task)
         }
     }
