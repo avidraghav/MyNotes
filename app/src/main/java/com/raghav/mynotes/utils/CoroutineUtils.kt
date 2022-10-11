@@ -1,5 +1,6 @@
 package com.raghav.mynotes.utils
 
+import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope

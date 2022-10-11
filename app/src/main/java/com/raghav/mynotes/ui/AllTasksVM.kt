@@ -30,9 +30,9 @@ class AllTasksVM @Inject constructor(
             _tasks.postValue(Resource.Loading())
             repository.getAllTasks().collect {
                 if (sort)
-                    _tasks.value = Resource.Success(sortTasks(it))
+                    _tasks.postValue(Resource.Success(sortTasks(it)))
                 else
-                    _tasks.value = Resource.Success(it)
+                    _tasks.postValue(Resource.Success(it))
             }
         }
     }
