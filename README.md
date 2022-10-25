@@ -49,6 +49,14 @@ I highly recommend to start with Manual Dependency injection method and then mov
 
 <img width="658" alt="Screenshot 2022-01-18 at 1 31 48 PM" src="https://user-images.githubusercontent.com/49483235/149895306-79dd64bb-7629-42f3-97dd-1796f4a65b40.png">
 
+## 🦸‍♂️ Contribtors
+
+<a href="https://github.com/avidraghav/MyNotes/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=avidraghav/MyNotes" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
+
 # This project is made for educational purposes so don't be shy of asking any questions about any concept from the app or about android developement. 
 Do open <a href ="https://github.com/avidraghav/MVVM-TodoApp/issues" target="_blank">issues</a>
   and raise PRs to I'll try my best to assist you. If this project helps you then do leave a 🌟 :smiley:
