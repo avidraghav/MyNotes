@@ -5,10 +5,10 @@
 ![GitHub forks](https://img.shields.io/github/forks/avidraghav/MyNotes?style=social)
 ![Twitter Follow](https://img.shields.io/twitter/follow/avidRaghav?label=Follow&style=social)
 
-[![Hactoberfest 2022](https://img.shields.io/badge/-HACKTOBERFEST--ACCEPTED-brightgreen)](https://hacktoberfest.com/participation/)
+[![Hacktoberfest 2022](https://img.shields.io/badge/-HACKTOBERFEST--ACCEPTED-brightgreen)](https://hacktoberfest.com/participation/)
 [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23515-blue)](https://androidweekly.net/issues/issue-515)
 [![Contributions Highly Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/avidraghav/MyNotes/issues)
-[![Availble issues to contribute](https://img.shields.io/github/issues/avidRaghav/MyNotes?style=social)](https://github.com/avidraghav/MyNotes/issues)
+[![Available issues to contribute](https://img.shields.io/github/issues/avidRaghav/MyNotes?style=social)](https://github.com/avidraghav/MyNotes/issues)
 
 
 
@@ -31,8 +31,8 @@ I highly recommend to start with Manual Dependency injection method and then mov
 - [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) - In the simplest of ways consider this as a pipe through which the data flows in the app, by using flow
    a developer doesn't need to refresh variables which contain data.  
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Used to observe the data on the UI layer
-- [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - To Store UI-related data that isnt destroyed on UI changes.
-- [RecylerView](https://developer.android.com/guide/topics/ui/layout/recyclerview) - To Display data in a list format.
+- [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - To Store UI-related data that isn't destroyed on UI changes.
+- [RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview) - To Display data in a list format.
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - For Dependency Injection
 - [Datastore](https://developer.android.com/topic/libraries/architecture/datastore) - For Storing Data
 
@@ -49,7 +49,7 @@ I highly recommend to start with Manual Dependency injection method and then mov
 
 <img width="658" alt="Screenshot 2022-01-18 at 1 31 48 PM" src="https://user-images.githubusercontent.com/49483235/149895306-79dd64bb-7629-42f3-97dd-1796f4a65b40.png">
 
-## 🦸‍♂️ Contribtors
+## 🦸‍♂️ Contributors
 
 <a href="https://github.com/avidraghav/MyNotes/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=avidraghav/MyNotes" />
@@ -57,7 +57,7 @@ I highly recommend to start with Manual Dependency injection method and then mov
 
 Made with [contrib.rocks](https://contrib.rocks).
 
-# This project is made for educational purposes so don't be shy of asking any questions about any concept from the app or about android developement. 
+# This project is made for educational purposes so don't be shy of asking any questions about any concept from the app or about android development. 
 Do open <a href ="https://github.com/avidraghav/MVVM-TodoApp/issues" target="_blank">issues</a>
   and raise PRs to I'll try my best to assist you. If this project helps you then do leave a 🌟 :smiley:
 
