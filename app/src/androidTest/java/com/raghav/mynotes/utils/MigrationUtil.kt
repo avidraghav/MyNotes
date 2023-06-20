@@ -16,7 +16,7 @@ object MigrationUtil {
         migrationTestHelper: MigrationTestHelper,
         databaseClass: Class<TasksDatabase>,
         databaseName: String,
-        vararg migrations: Migration?
+        vararg migrations: Migration
     ): RoomDatabase {
         val roomDatabase: RoomDatabase = Room.databaseBuilder(
             ApplicationProvider.getApplicationContext(),
